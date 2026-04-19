@@ -1,0 +1,45 @@
+overall/server wise and project wise/sprint wise 
+bugs fixed dashboard 
+remove sustainability score
+suggest green audit and green building in optimization insights also
+
+
+
+further ideas:
+1) reduce redundancy
+
+2) Multi-Account / Organization Dashboard
+
+Enterprises manage many accounts.
+
+Add:
+
+Multiple projects / accounts
+
+Team view
+
+Organization-level emissions
+
+Role-based access
+
+6) Alerts & Recommendations Engine
+
+Instead of static suggestions:
+
+“Your idle compute increased 18% this week”
+
+“Switch to ARM instances to save X carbon”
+
+“High carbon region detected”
+
+👉 Makes it feel intelligent.
+
+9) AI Chat Assistant (Huge wow factor)
+
+Example:
+
+“Why did my emissions increase this month?”
+“How can I reduce footprint by 30%?”
+“Explain this report to a non-technical manager”
+
+You already have AI layer → easy extension.

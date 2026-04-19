@@ -1,0 +1,466 @@
+%PDF-1.3
+%ºß¬à
+3 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 4210
+>>
+stream
+0.5670000000000001 w
+0 G
+0.06 0.08 0.1 rg
+0. 841.8899999999999864 595.2755905511811534 -841.8897637795276978 re
+f
+BT
+/F2 24 Tf
+27.5999999999999979 TL
+0.878 0.886 0.918 rg
+56.6929133858267775 756.8506299212598378 Td
+(CarbonLens AI) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.761 0.776 0.839 rg
+56.6929133858267775 734.1734645669291695 Td
+(Precision ESG Intelligence) Tj
+ET
+0.26 0.28 0.33 RG
+56.6929133858267775 714.3309448818897636 m
+538.5826771653544256 714.3309448818897636 l
+S
+BT
+/F2 16 Tf
+18.3999999999999986 TL
+0.678 0.776 1. rg
+56.6929133858267775 677.480551181102328 Td
+(Detailed Analytics Report) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.761 0.776 0.839 rg
+56.6929133858267775 654.8033858267716596 Td
+(tecno corp — final_dataset_clean.csv — 4/18/2026) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.878 0.886 0.918 rg
+56.6929133858267775 609.4490551181102092 Td
+(Key Metrics) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.878 0.886 0.918 rg
+70.8661417322834666 581.1025984251967884 Td
+(Total Carbon: 2939058604.94 tCO2e) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.878 0.886 0.918 rg
+70.8661417322834666 561.2600787401574962 Td
+(Total Energy: 18369116280.88 kWh) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.878 0.886 0.918 rg
+70.8661417322834666 541.4175590551180903 Td
+(Total Cost: $0.00) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.878 0.886 0.918 rg
+70.8661417322834666 521.5750393700786844 Td
+(Sustainability Score: 90.4 / 100) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.878 0.886 0.918 rg
+56.6929133858267775 481.8899999999999295 Td
+(AI Predictions) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.878 0.886 0.918 rg
+70.8661417322834666 453.5435433070865656 Td
+(Jan: 0.00 tCO2e \(Decreasing\)) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.878 0.886 0.918 rg
+70.8661417322834666 433.7010236220471597 Td
+(Feb: 0.00 tCO2e \(Stable\)) Tj
+ET
+BT
+/F2 10 Tf
+11.5 TL
+0.878 0.886 0.918 rg
+70.8661417322834666 413.8585039370078107 Td
+(Mar: 0.00 tCO2e \(Stable\)) Tj
+ET
+BT
+/F2 12 Tf
+13.7999999999999989 TL
+0.878 0.886 0.918 rg
+56.6929133858267775 374.1734645669290558 Td
+(Recommendations) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.678 0.776 1. rg
+70.8661417322834666 345.8270078740156919 Td
+([High] Shut Down Idle Resources) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.761 0.776 0.839 rg
+70.8661417322834666 328.8191338582676053 Td
+(Your instances average 13% idle time \(peak 100%\). Implement auto-stopping for non-production) Tj
+T* (workloads during off-hours.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.678 0.776 1. rg
+70.8661417322834666 289.1340944881889072 Td
+([Medium] Right-size CPU Allocations) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.761 0.776 0.839 rg
+70.8661417322834666 272.1262204724408775 Td
+(Average CPU usage is 65652236 hours/month. Downgrade over-provisioned instances and consider) Tj
+T* (efficient instance families.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.678 0.776 1. rg
+70.8661417322834666 232.4411811023621794 Td
+([High] Migrate to Low-Carbon Regions) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.761 0.776 0.839 rg
+70.8661417322834666 215.4333070866141497 Td
+(Over 30% of workloads run in regions with higher carbon intensity. Move flexible workloads to cleaner) Tj
+T* (regions where latency allows.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.678 0.776 1. rg
+70.8661417322834666 175.748267716535338 Td
+([Medium] Optimize Network Data Transfer) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.761 0.776 0.839 rg
+70.8661417322834666 158.7403937007873083 Td
+(Average network transfer is 65652236 GB/month. Use CDN caching, compression, and private endpoints) Tj
+T* (to reduce transfer overhead.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.678 0.776 1. rg
+70.8661417322834666 119.0553543307086102 Td
+([Medium] Adopt Serverless & Container Orchestration) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.761 0.776 0.839 rg
+70.8661417322834666 102.0474803149605805 Td
+(Move suitable workloads to serverless functions and autoscaled containers to reduce idle compute.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.678 0.776 1. rg
+70.8661417322834666 76.5356692913385359 Td
+([Medium] Implement Carbon-Aware Job Scheduling) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.761 0.776 0.839 rg
+70.8661417322834666 59.5277952755905062 Td
+(Schedule non-urgent batch jobs during lower-carbon grid periods or in cleaner regions.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 6 0 R
+>>
+endobj
+6 0 obj
+<<
+/Length 533
+>>
+stream
+0.5670000000000001 w
+0.26 0.28 0.33 RG
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.678 0.776 1. rg
+70.8661417322834666 785.1970866141732586 Td
+([Low] Deploy Carbon Observability Dashboard) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.761 0.776 0.839 rg
+70.8661417322834666 768.1892125984252289 Td
+(Track carbon spikes, idle resources, and emissions per workload in your observability stack.) Tj
+ET
+BT
+/F2 8 Tf
+9.1999999999999993 TL
+0.392 0.455 0.545 rg
+56.6929133858267775 25.5120472440943331 Td
+(Generated by CarbonLens AI — 4/18/2026) Tj
+ET
+endstream
+endobj
+1 0 obj
+<</Type /Pages
+/Kids [3 0 R 5 0 R ]
+/Count 2
+>>
+endobj
+7 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+8 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+9 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+10 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+11 0 obj
+<<
+/Type /Font
+/BaseFont /Courier
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+12 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+13 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+14 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+15 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Roman
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+16 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+17 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+18 0 obj
+<<
+/Type /Font
+/BaseFont /Times-BoldItalic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+19 0 obj
+<<
+/Type /Font
+/BaseFont /ZapfDingbats
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+20 0 obj
+<<
+/Type /Font
+/BaseFont /Symbol
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+2 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/Font <<
+/F1 7 0 R
+/F2 8 0 R
+/F3 9 0 R
+/F4 10 0 R
+/F5 11 0 R
+/F6 12 0 R
+/F7 13 0 R
+/F8 14 0 R
+/F9 15 0 R
+/F10 16 0 R
+/F11 17 0 R
+/F12 18 0 R
+/F13 19 0 R
+/F14 20 0 R
+>>
+/XObject <<
+>>
+>>
+endobj
+21 0 obj
+<<
+/Producer (jsPDF 2.5.2)
+/CreationDate (D:20260418214856+05'30')
+>>
+endobj
+22 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+>>
+endobj
+xref
+0 23
+0000000000 65535 f 
+0000005135 00000 n 
+0000006960 00000 n 
+0000000015 00000 n 
+0000000152 00000 n 
+0000004414 00000 n 
+0000004551 00000 n 
+0000005198 00000 n 
+0000005323 00000 n 
+0000005453 00000 n 
+0000005586 00000 n 
+0000005724 00000 n 
+0000005848 00000 n 
+0000005977 00000 n 
+0000006109 00000 n 
+0000006245 00000 n 
+0000006373 00000 n 
+0000006500 00000 n 
+0000006629 00000 n 
+0000006762 00000 n 
+0000006864 00000 n 
+0000007210 00000 n 
+0000007296 00000 n 
+trailer
+<<
+/Size 23
+/Root 22 0 R
+/Info 21 0 R
+/ID [ <1CFEE2EB1E57963AE0395C00904CA14E> <1CFEE2EB1E57963AE0395C00904CA14E> ]
+>>
+startxref
+7400
+%%EOF

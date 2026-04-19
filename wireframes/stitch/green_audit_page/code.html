@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Green Audit — CarbonLens AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#d0bcff",
+              "inverse-surface": "#e0e2ea",
+              "inverse-primary": "#005ac2",
+              "error": "#ffb4ab",
+              "surface-bright": "#36393f",
+              "outline": "#8c909f",
+              "on-tertiary-fixed-variant": "#005321",
+              "on-error-container": "#ffdad6",
+              "secondary-container": "#571bc1",
+              "surface-container-low": "#181c21",
+              "secondary-fixed": "#e9ddff",
+              "surface-container": "#1c2025",
+              "surface-tint": "#adc6ff",
+              "tertiary-fixed-dim": "#4ae176",
+              "on-primary": "#002e6a",
+              "on-surface-variant": "#c2c6d6",
+              "tertiary-container": "#00a74b",
+              "on-surface": "#e0e2ea",
+              "on-secondary": "#3c0091",
+              "background": "#101419",
+              "tertiary-fixed": "#6bff8f",
+              "on-secondary-fixed": "#23005c",
+              "surface-container-highest": "#31353b",
+              "primary-fixed": "#d8e2ff",
+              "on-secondary-container": "#c4abff",
+              "surface-container-high": "#262a30",
+              "error-container": "#93000a",
+              "surface-container-lowest": "#0a0e13",
+              "on-tertiary-fixed": "#002109",
+              "surface-variant": "#31353b",
+              "inverse-on-surface": "#2d3136",
+              "primary": "#adc6ff",
+              "secondary-fixed-dim": "#d0bcff",
+              "tertiary": "#4ae176",
+              "primary-container": "#4d8eff",
+              "on-primary-fixed-variant": "#004395",
+              "on-background": "#e0e2ea",
+              "on-tertiary": "#003915",
+              "primary-fixed-dim": "#adc6ff",
+              "on-primary-container": "#00285d",
+              "surface": "#101419",
+              "on-primary-fixed": "#001a42",
+              "surface-dim": "#101419",
+              "on-tertiary-container": "#003111",
+              "on-error": "#690005",
+              "outline-variant": "#424754",
+              "on-secondary-fixed-variant": "#5516be"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(16px);
+        }
+        .text-glow-tertiary {
+            text-shadow: 0 0 15px rgba(74, 225, 118, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen">
+<!-- Top Navigation -->
+<nav class="sticky top-0 h-16 w-full bg-slate-950/80 backdrop-blur-xl text-blue-400 dark:text-blue-400 font-['Inter'] antialiased tracking-tight shadow-[0_0_40px_rgba(173,198,255,0.06)] border-b border-white/5 z-50">
+<div class="flex justify-between items-center px-6 w-full max-w-full h-full">
+<div class="text-xl font-bold tracking-tighter text-slate-100">CarbonLens AI</div>
+<div class="hidden md:flex gap-8">
+<a class="text-slate-400 font-medium hover:text-slate-100 hover:bg-white/5 transition-all duration-300" href="#">Dashboard</a>
+<a class="text-slate-400 font-medium hover:text-slate-100 hover:bg-white/5 transition-all duration-300" href="#">Analytics</a>
+<a class="text-slate-400 font-medium hover:text-slate-100 hover:bg-white/5 transition-all duration-300" href="#">Reports</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-400 hover:text-white transition-all">notifications</button>
+<img alt="CSP Admin Avatar" class="w-8 h-8 rounded-full border border-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEd63ofLBCLrp9Tbk3c-bp-EzQw9PqEmPnz_CntTaA9SJA96QnKL72JOVEhAjUiiBJ41tIF_KUqteY9-ZFxEPg9NheKc_QMDqycsF_-BLV3C_KB1lHpkJane8VRdYtIdl694AmfCNqJTfaVDfxs5publue0E9EIthKVjcQ5GFQ5FIWHuNjIKZ3Dk4I6DrP9Aud4cmWKXvN3ay8f8ER56XMT82o_kO3qEhVIsLKA99hLRxExqnX9Ue99jEhPOh9gzHkL6vox2JJvQ"/>
+</div>
+</div>
+</nav>
+<div class="flex">
+<!-- Sidebar Navigation -->
+<aside class="flex flex-col fixed left-0 top-16 bottom-0 p-4 z-40 bg-slate-900/50 backdrop-blur-2xl text-emerald-400 dark:text-emerald-400 font-['Inter'] text-sm tracking-wide uppercase font-semibold h-[calc(100vh-64px)] w-[240px] transition-all duration-300 ease-in-out shadow-2xl shadow-blue-900/20">
+<div class="space-y-2 flex-grow">
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-200 hover:bg-white/5 rounded-lg cursor-pointer active:opacity-80 transition-transform duration-200 hover:translate-x-1">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-200 hover:bg-white/5 rounded-lg cursor-pointer active:opacity-80 transition-transform duration-200 hover:translate-x-1">
+<span class="material-symbols-outlined">business</span>
+<span>Companies</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-200 hover:bg-white/5 rounded-lg cursor-pointer active:opacity-80 transition-transform duration-200 hover:translate-x-1">
+<span class="material-symbols-outlined">insights</span>
+<span>Analytics</span>
+</div>
+<!-- Active Tab: Green Audit -->
+<div class="flex items-center gap-3 px-3 py-2 bg-emerald-500/10 text-emerald-400 shadow-[inset_0_0_20px_rgba(74,225,118,0.1)] rounded-lg cursor-pointer active:opacity-80 transition-transform duration-200 hover:translate-x-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>Green Audit</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-200 hover:bg-white/5 rounded-lg cursor-pointer active:opacity-80 transition-transform duration-200 hover:translate-x-1">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span>Optimization</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-200 hover:bg-white/5 rounded-lg cursor-pointer active:opacity-80 transition-transform duration-200 hover:translate-x-1">
+<span class="material-symbols-outlined">model_training</span>
+<span>Simulator</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-200 hover:bg-white/5 rounded-lg cursor-pointer active:opacity-80 transition-transform duration-200 hover:translate-x-1">
+<span class="material-symbols-outlined">description</span>
+<span>Reports</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-200 hover:bg-white/5 rounded-lg cursor-pointer active:opacity-80 transition-transform duration-200 hover:translate-x-1">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</div>
+</div>
+<div class="pt-4 border-t border-white/5 space-y-2">
+<button class="w-full py-3 px-4 bg-gradient-to-br from-primary to-primary-container text-on-primary-container rounded-lg font-bold text-[10px] tracking-widest flex items-center justify-center gap-2 mb-4">
+<span class="material-symbols-outlined text-sm">bolt</span>
+                    RUN SIMULATION
+                </button>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-200 hover:bg-white/5 rounded-lg cursor-pointer transition-transform duration-200">
+<span class="material-symbols-outlined">help</span>
+<span>Support</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-200 hover:bg-white/5 rounded-lg cursor-pointer transition-transform duration-200">
+<span class="material-symbols-outlined text-error">logout</span>
+<span>Sign Out</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-grow ml-[240px] p-10 min-h-[calc(100vh-64px)]">
+<!-- Hero Status Section -->
+<section class="mb-14 relative overflow-hidden rounded-2xl bg-surface-container shadow-2xl">
+<div class="absolute inset-0 opacity-10" data-alt="abstract tech circuit pattern with glowing green lines on a dark background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDF-YxLT3DK7hW_b7bKC9BMhW00SKy8OePtE039XPuDIIgwluFMmb5yDIXMrtPx6SjcJxm6lxUedokCKU1cK-OTS51kN2ev6x4Mroe6VmpKbPDwESn2o3bpCOLQvdOYGPjEeT8Opt9FEmzG3OQxJRIZa2-DuGdgjF91rSYhQseZFE7zmfX4OO43VaKB7waeFVp6Ej4HXfIbVqhLXGVkc_vLzPbooLeef45lK-J29fqSPpiGhGTYuOhFEg9SVVxPYNqXwWmefLJI-w')"></div>
+<div class="relative z-10 flex flex-col items-center justify-center py-20 px-6 text-center">
+<div class="mb-8 relative">
+<!-- Animated Circular Indicator -->
+<div class="w-48 h-48 rounded-full border-2 border-dashed border-tertiary animate-[spin_20s_linear_infinite] absolute inset-0"></div>
+<div class="w-48 h-48 rounded-full border-4 border-tertiary/20 flex items-center justify-center shadow-[0_0_50px_rgba(74,225,118,0.2)]">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-tertiary text-6xl mb-1 text-glow-tertiary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-tertiary font-black tracking-[0.2em] text-sm">COMPLIANT</span>
+</div>
+</div>
+</div>
+<h1 class="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">Enterprise ESG Integrity Audit</h1>
+<div class="flex flex-wrap justify-center gap-8 text-on-surface-variant font-label text-xs tracking-[0.15em] uppercase">
+<div class="flex flex-col gap-1">
+<span>Last Audit</span>
+<span class="text-white font-bold">Oct 12, 2023 · 09:42 GMT</span>
+</div>
+<div class="w-px h-8 bg-outline-variant/30 hidden md:block"></div>
+<div class="flex flex-col gap-1">
+<span>Next Scheduled</span>
+<span class="text-primary font-bold">Nov 12, 2023</span>
+</div>
+<div class="w-px h-8 bg-outline-variant/30 hidden md:block"></div>
+<div class="flex flex-col gap-1">
+<span>Audit Score</span>
+<span class="text-tertiary font-bold">94 / 100</span>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Issue Breakdown (Left Column) -->
+<div class="lg:col-span-5 space-y-8">
+<div class="flex items-baseline justify-between">
+<h2 class="text-xl font-bold tracking-tight text-white uppercase text-sm tracking-[0.15em] text-on-surface-variant">Infrastructure Health</h2>
+<span class="text-[10px] text-on-surface-variant/60 font-label tracking-widest">LIVE DATA FEED</span>
+</div>
+<div class="space-y-6">
+<!-- Category: Compute -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<label class="text-xs font-semibold tracking-wide text-on-surface">COMPUTE EFFICIENCY</label>
+<span class="text-tertiary font-bold">92%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[92%] shadow-[0_0_10px_rgba(74,225,118,0.5)]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant">2 optimized instances, 0 idle resources</p>
+</div>
+<!-- Category: Storage -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<label class="text-xs font-semibold tracking-wide text-on-surface">STORAGE UTILIZATION</label>
+<span class="text-tertiary font-bold">88%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[88%] shadow-[0_0_10px_rgba(74,225,118,0.5)]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant">Intelligent tiering active on 94% of objects</p>
+</div>
+<!-- Category: Network -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<label class="text-xs font-semibold tracking-wide text-on-surface">NETWORK FOOTPRINT</label>
+<span class="text-secondary font-bold">74%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[74%] shadow-[0_0_10px_rgba(208,188,255,0.4)]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant">High cross-region egress detected in EU-West</p>
+</div>
+<!-- Category: Security -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<label class="text-xs font-semibold tracking-wide text-on-surface">GREEN SECURITY</label>
+<span class="text-tertiary font-bold">98%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[98%] shadow-[0_0_10px_rgba(74,225,118,0.5)]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant">All authentication services on sustainable nodes</p>
+</div>
+<!-- Category: Data Residency -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<label class="text-xs font-semibold tracking-wide text-on-surface">DATA RESIDENCY</label>
+<span class="text-error font-bold">42%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-error w-[42%] shadow-[0_0_10px_rgba(255,180,171,0.5)]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant">3 datasets found in high-carbon regions (Coal-heavy)</p>
+</div>
+</div>
+</div>
+<!-- Recommendations List (Right Column) -->
+<div class="lg:col-span-7">
+<div class="glass-panel rounded-2xl border border-outline-variant/10 p-8">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-xl font-bold text-white tracking-tight">Active Recommendations</h2>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-error/10 text-error rounded-full text-[10px] font-bold tracking-widest border border-error/20">3 HIGH</span>
+<span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-[10px] font-bold tracking-widest border border-secondary/20">8 MEDIUM</span>
+</div>
+</div>
+<div class="space-y-6">
+<!-- HIGH PRIORITY SECTION -->
+<div class="space-y-4">
+<button class="w-full flex items-center justify-between text-on-surface-variant font-label text-[10px] tracking-[0.2em] uppercase py-2 border-b border-outline-variant/10">
+<span>Critical Interventions</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<!-- Rec Item 1 -->
+<div class="group flex gap-5 p-5 bg-surface-container-low hover:bg-surface-container rounded-xl transition-all duration-300 border-l-4 border-error">
+<div class="flex-shrink-0 w-12 h-12 bg-error/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">public</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-white text-md">Relocate Data Residencies</h3>
+<span class="text-[9px] px-2 py-0.5 bg-surface-container-highest text-on-surface-variant rounded-md font-bold uppercase tracking-wider">High Effort</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-4 leading-relaxed">3DB storage clusters in 'us-east-1' are powered by &gt;60% fossil fuels. Migrating to 'us-east-2' reduces carbon footprint by 42%.</p>
+<div class="flex justify-end gap-3">
+<button class="text-[10px] font-bold text-on-surface-variant hover:text-white transition-colors tracking-widest">DISMISS</button>
+<button class="px-4 py-1.5 bg-error/20 text-error border border-error/30 rounded-lg text-[10px] font-bold tracking-widest hover:bg-error/30 transition-all">MARK AS RESOLVED</button>
+</div>
+</div>
+</div>
+</div>
+<!-- MEDIUM PRIORITY SECTION -->
+<div class="space-y-4">
+<button class="w-full flex items-center justify-between text-on-surface-variant font-label text-[10px] tracking-[0.2em] uppercase py-2 border-b border-outline-variant/10">
+<span>Optimization Tasks</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<!-- Rec Item 2 -->
+<div class="group flex gap-5 p-5 bg-surface-container-low hover:bg-surface-container rounded-xl transition-all duration-300 border-l-4 border-secondary">
+<div class="flex-shrink-0 w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">schedule</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-white text-md">Implement Idle Shutdown</h3>
+<span class="text-[9px] px-2 py-0.5 bg-surface-container-highest text-on-surface-variant rounded-md font-bold uppercase tracking-wider">Low Effort</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-4 leading-relaxed">Development environments are running 24/7. Auto-shutdown during non-working hours (19:00 - 07:00) saves 120kg CO2/mo.</p>
+<div class="flex justify-end gap-3">
+<button class="text-[10px] font-bold text-on-surface-variant hover:text-white transition-colors tracking-widest">DISMISS</button>
+<button class="px-4 py-1.5 bg-secondary/20 text-secondary border border-secondary/30 rounded-lg text-[10px] font-bold tracking-widest hover:bg-secondary/30 transition-all">MARK AS RESOLVED</button>
+</div>
+</div>
+</div>
+<!-- Rec Item 3 -->
+<div class="group flex gap-5 p-5 bg-surface-container-low hover:bg-surface-container rounded-xl transition-all duration-300 border-l-4 border-secondary">
+<div class="flex-shrink-0 w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">compress</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-white text-md">Enable Gzip/Brotli Compression</h3>
+<span class="text-[9px] px-2 py-0.5 bg-surface-container-highest text-on-surface-variant rounded-md font-bold uppercase tracking-wider">Low Effort</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-4 leading-relaxed">Network egress is high due to uncompressed static assets. Enabling Brotli will reduce data transfer energy consumption by 18%.</p>
+<div class="flex justify-end gap-3">
+<button class="text-[10px] font-bold text-on-surface-variant hover:text-white transition-colors tracking-widest">DISMISS</button>
+<button class="px-4 py-1.5 bg-secondary/20 text-secondary border border-secondary/30 rounded-lg text-[10px] font-bold tracking-widest hover:bg-secondary/30 transition-all">MARK AS RESOLVED</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Global CTA Section -->
+<section class="mt-20 p-8 rounded-2xl bg-gradient-to-r from-surface-container to-surface-container-high border border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+<div>
+<h4 class="text-xl font-bold text-white mb-1">Advanced ESG Reporting</h4>
+<p class="text-on-surface-variant text-sm">Download a certified board-ready PDF audit of your cloud infrastructure sustainability.</p>
+</div>
+<button class="whitespace-nowrap px-8 py-3 bg-white text-background rounded-lg font-bold text-xs tracking-widest hover:scale-105 transition-transform">
+                    DOWNLOAD CERTIFICATE
+                </button>
+</section>
+</main>
+</div>
+<!-- Floating Background Glows -->
+<div class="fixed top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px] pointer-events-none z-[-1]"></div>
+<div class="fixed bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-tertiary/5 rounded-full blur-[120px] pointer-events-none z-[-1]"></div>
+</body></html>

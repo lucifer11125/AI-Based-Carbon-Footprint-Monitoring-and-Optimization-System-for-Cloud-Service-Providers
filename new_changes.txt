@@ -1,0 +1,36 @@
+New changes and updates for the app
+
+1. Performance Optimization
+• Fix slow dataset processing.
+• Improve backend speed after CSV upload.
+• Reduce frontend lag and slow loading.
+2. Green Audit Fix
+• Enable Green Audit for Company User Dashboard.
+• Ensure same audit logic works across roles.
+3. Reports Module Fix
+• Fix “No Data Yet” issue.
+• Correct report generation and visibility.
+page
+
+3. Csp analyst credentials and login can be isuued by csp admin only as normal user cannot become Csp analyst .i.e. as below 
+🔐 Secure Role-Based User Provisioning Update
+Implement a secure role-based user management system to ensure only authorized users receive elevated access. Remove Admin and CSP Analyst roles from public signup. If public registration is enabled, new users should be created only as Company Users by default. Allow CSP Admin users to create CSP Analyst and Company User accounts through an Admin Users Management Dashboard. Add a temporary password onboarding flow for admin-created accounts and force users to reset password on first login. Protect all user-creation and role-management APIs so they are accessible only to authenticated CSP Admins. Update the users database schema to store fields such as role, created_by, company_id, is_active, and must_reset_password for full auditability and secure access control.
+
+4. Remove Run simulator button that is extra above support tab 
+5. Add this feature 
+     analyst analysis everything from datasets
+              
+                       uploads report on app
+
+report directly is visible to csp admin in csp admin page reports tab
+
+6. Company Dropdown Fix
+• Newly created companies must appear instantly in selectors.
+7. Dashboard Role Cleanup
+• Admin: management + analytics.
+• Analyst: analysis + reports.
+• Company User: upload + own dashboard.
+8. Multi-Tenant Security
+• Filter all data by company_id.
+9. Final Goal
+• Fast, secure, production-ready platform.

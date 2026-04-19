@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary": "#d0bcff",
+                        "inverse-surface": "#e0e2ea",
+                        "inverse-primary": "#005ac2",
+                        "error": "#ffb4ab",
+                        "surface-bright": "#36393f",
+                        "outline": "#8c909f",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "on-error-container": "#ffdad6",
+                        "secondary-container": "#571bc1",
+                        "surface-container-low": "#181c21",
+                        "secondary-fixed": "#e9ddff",
+                        "surface-container": "#1c2025",
+                        "surface-tint": "#adc6ff",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "on-primary": "#002e6a",
+                        "on-surface-variant": "#c2c6d6",
+                        "tertiary-container": "#00a74b",
+                        "on-surface": "#e0e2ea",
+                        "on-secondary": "#3c0091",
+                        "background": "#101419",
+                        "tertiary-fixed": "#6bff8f",
+                        "on-secondary-fixed": "#23005c",
+                        "surface-container-highest": "#31353b",
+                        "primary-fixed": "#d8e2ff",
+                        "on-secondary-container": "#c4abff",
+                        "surface-container-high": "#262a30",
+                        "error-container": "#93000a",
+                        "surface-container-lowest": "#0a0e13",
+                        "on-tertiary-fixed": "#002109",
+                        "surface-variant": "#31353b",
+                        "inverse-on-surface": "#2d3136",
+                        "primary": "#adc6ff",
+                        "secondary-fixed-dim": "#d0bcff",
+                        "tertiary": "#4ae176",
+                        "primary-container": "#4d8eff",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-background": "#e0e2ea",
+                        "on-tertiary": "#003915",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-primary-container": "#00285d",
+                        "surface": "#101419",
+                        "on-primary-fixed": "#001a42",
+                        "surface-dim": "#101419",
+                        "on-tertiary-container": "#003111",
+                        "on-error": "#690005",
+                        "outline-variant": "#424754",
+                        "on-secondary-fixed-variant": "#5516be"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(16px);
+        }
+        .mesh-bg {
+            background-color: #101419;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(173, 198, 255, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(74, 225, 118, 0.03) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(208, 188, 255, 0.04) 0px, transparent 50%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body min-h-screen mesh-bg selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="sticky top-0 h-16 w-full bg-slate-950/80 backdrop-blur-xl border-b border-white/5 shadow-[0_0_40px_rgba(173,198,255,0.06)] flex justify-between items-center px-6 z-50 font-['Inter'] antialiased tracking-tight">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-400" data-icon="lens">lens</span>
+<span class="text-xl font-bold tracking-tighter text-slate-100">CarbonLens AI</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="p-2 hover:bg-white/5 transition-all duration-300 rounded-full active:scale-95 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-slate-400" data-icon="notifications">notifications</span>
+</div>
+<div class="w-8 h-8 rounded-full border border-primary/20 overflow-hidden active:scale-95 transition-transform cursor-pointer">
+<img alt="CSP Admin Avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a professional technology administrator with a clean modern aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhQbTVLzAsMFlIrcdIojoIQ3u-4s28VaTPQzK86odvH3vrLD3YFppOXH4zuA6KjFuoxDbr_aNuf3XUgrP7e3HrSQBCtKgbikguW9Es7jFsdTk6djoaCYbaCz0_Egf0Z-_wn014FWyqlVPeOOWVF4F--H8SCWS0Y_3GoJPNqQLyHgt46fLouB59FWtE5F0olGrMTsSQ4zPsnWzn031F-ajsVCIs3kjEaXLAhgu42GasC6vL1k7Qgc16u0xMhcr9cfDs6qkKHks4XA"/>
+</div>
+</div>
+</nav>
+<main class="p-4 space-y-6 max-w-[375px] mx-auto pb-24">
+<!-- Header & AI Summary -->
+<header class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="text-[0.6875rem] uppercase tracking-[0.15em] text-on-surface-variant font-semibold">Global Overview</span>
+<div class="h-[1px] flex-grow bg-outline-variant/15"></div>
+</div>
+<h1 class="text-2xl font-extrabold tracking-tight text-white">Dashboard</h1>
+</header>
+<!-- KPI Grid (2x2) -->
+<section class="grid grid-cols-2 gap-3">
+<!-- Carbon Emission -->
+<div class="bg-surface-container-high glass-panel p-4 rounded-xl border border-white/5 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="co2">co2</span>
+<span class="text-[0.625rem] font-bold text-tertiary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]" data-icon="trending_down">trending_down</span> 12%
+                    </span>
+</div>
+<div>
+<p class="text-[0.6875rem] uppercase tracking-wider text-on-surface-variant font-medium">Emission</p>
+<p class="text-lg font-bold text-white">42.8k <span class="text-[10px] text-on-surface-variant font-normal uppercase">tCO2e</span></p>
+</div>
+</div>
+<!-- Energy Consumption -->
+<div class="bg-surface-container-high glass-panel p-4 rounded-xl border border-white/5 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="bolt">bolt</span>
+<span class="text-[0.625rem] font-bold text-error flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]" data-icon="trending_up">trending_up</span> 4%
+                    </span>
+</div>
+<div>
+<p class="text-[0.6875rem] uppercase tracking-wider text-on-surface-variant font-medium">Energy</p>
+<p class="text-lg font-bold text-white">18.2 <span class="text-[10px] text-on-surface-variant font-normal uppercase">GWh</span></p>
+</div>
+</div>
+<!-- ESG Score -->
+<div class="bg-surface-container-high glass-panel p-4 rounded-xl border border-white/5 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-tertiary text-xl" data-icon="verified">verified</span>
+<span class="text-[0.625rem] font-bold text-tertiary flex items-center gap-0.5">
+                        Stable
+                    </span>
+</div>
+<div>
+<p class="text-[0.6875rem] uppercase tracking-wider text-on-surface-variant font-medium">ESG Score</p>
+<p class="text-lg font-bold text-white">A- <span class="text-[10px] text-on-surface-variant font-normal uppercase">92/100</span></p>
+</div>
+</div>
+<!-- Operational Cost -->
+<div class="bg-surface-container-high glass-panel p-4 rounded-xl border border-white/5 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-primary-container text-xl" data-icon="payments">payments</span>
+<span class="text-[0.625rem] font-bold text-tertiary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]" data-icon="trending_down">trending_down</span> 8%
+                    </span>
+</div>
+<div>
+<p class="text-[0.6875rem] uppercase tracking-wider text-on-surface-variant font-medium">Eco-Cost</p>
+<p class="text-lg font-bold text-white">$2.4M <span class="text-[10px] text-on-surface-variant font-normal uppercase">USD</span></p>
+</div>
+</div>
+</section>
+<!-- Carbon Trend Line Chart -->
+<section class="bg-surface-container glass-panel p-5 rounded-xl border border-white/5 relative overflow-hidden">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h3 class="text-xs uppercase tracking-widest text-on-surface-variant font-bold mb-1">Carbon Trend</h3>
+<p class="text-xl font-bold text-white">Steady Decline</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-white/5 text-[10px] px-2 py-1 rounded text-primary border border-primary/20">6M</button>
+<button class="bg-transparent text-[10px] px-2 py-1 rounded text-on-surface-variant">1Y</button>
+</div>
+</div>
+<div class="h-32 w-full relative">
+<!-- Mock SVG Chart -->
+<svg class="w-full h-full" viewbox="0 0 300 100">
+<defs>
+<lineargradient id="vaporGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#4ae176" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#4ae176" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,80 Q50,70 100,50 T200,40 T300,20" fill="none" stroke="#4ae176" stroke-linecap="round" stroke-width="3"></path>
+<path d="M0,80 Q50,70 100,50 T200,40 T300,20 L300,100 L0,100 Z" fill="url(#vaporGradient)"></path>
+<!-- Glow Nodes -->
+<circle class="animate-pulse" cx="100" cy="50" fill="#4ae176" r="4"></circle>
+<circle cx="300" cy="20" fill="#4ae176" r="4"></circle>
+</svg>
+</div>
+<div class="flex justify-between mt-4 text-[10px] text-on-surface-variant font-medium uppercase tracking-tighter">
+<span>Jan</span>
+<span>Feb</span>
+<span>Mar</span>
+<span>Apr</span>
+<span>May</span>
+<span>Jun</span>
+</div>
+</section>
+<!-- Top Polluters Leaderboard -->
+<section class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="text-[0.6875rem] uppercase tracking-[0.15em] text-on-surface-variant font-bold">Priority Sites</h3>
+<span class="text-[10px] text-primary flex items-center gap-1 active:opacity-80">View Map <span class="material-symbols-outlined text-[12px]" data-icon="map">map</span></span>
+</div>
+<div class="space-y-2">
+<!-- Site 1 -->
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center justify-between border border-white/5 active:bg-white/5 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center border border-white/10">
+<span class="material-symbols-outlined text-secondary" data-icon="factory">factory</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Hamburg Hub 01</p>
+<p class="text-[10px] text-on-surface-variant">Manufacturing • Germany</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-error">1,240 <span class="text-[8px] uppercase">t</span></p>
+<p class="text-[8px] text-on-surface-variant font-medium uppercase tracking-tighter">Critical Alert</p>
+</div>
+</div>
+<!-- Site 2 -->
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center justify-between border border-white/5 active:bg-white/5 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center border border-white/10">
+<span class="material-symbols-outlined text-primary" data-icon="storage">storage</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Dublin DC-04</p>
+<p class="text-[10px] text-on-surface-variant">Data Center • Ireland</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-warning text-primary">890 <span class="text-[8px] uppercase">t</span></p>
+<p class="text-[8px] text-on-surface-variant font-medium uppercase tracking-tighter">Optimized</p>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Insights (Horizontal Scroll) -->
+<section class="space-y-4">
+<h3 class="text-[0.6875rem] uppercase tracking-[0.15em] text-on-surface-variant font-bold">AI Intelligence</h3>
+<div class="flex overflow-x-auto pb-4 gap-4 no-scrollbar -mx-4 px-4">
+<!-- Insight Card 1 -->
+<div class="min-w-[240px] bg-gradient-to-br from-primary/10 to-transparent p-5 rounded-2xl border border-primary/20 glass-panel">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="auto_awesome">auto_awesome</span>
+<span class="text-[10px] font-bold text-primary uppercase tracking-widest">Efficiency Play</span>
+</div>
+<p class="text-xs text-on-surface leading-relaxed mb-4">Switching Hamburg to <span class="text-white font-semibold">Hydrogen Grid</span> by Q4 could reduce global footprint by <span class="text-tertiary">4.2%</span>.</p>
+<button class="w-full bg-primary py-2 rounded-lg text-on-primary text-[10px] font-bold uppercase tracking-widest active:scale-95 transition-transform">Run Simulation</button>
+</div>
+<!-- Insight Card 2 -->
+<div class="min-w-[240px] bg-gradient-to-br from-secondary/10 to-transparent p-5 rounded-2xl border border-secondary/20 glass-panel">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-secondary text-lg" data-icon="lightbulb">lightbulb</span>
+<span class="text-[10px] font-bold text-secondary uppercase tracking-widest">Energy Saving</span>
+</div>
+<p class="text-xs text-on-surface leading-relaxed mb-4">Peak-shaving Dublin data center operations between 14:00-17:00 saves <span class="text-white font-semibold">$45k/mo</span>.</p>
+<button class="w-full border border-secondary/30 text-secondary py-2 rounded-lg text-[10px] font-bold uppercase tracking-widest active:scale-95 transition-transform">Apply Plan</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Mobile Nav -->
+<div class="fixed bottom-0 left-0 right-0 bg-slate-900/50 backdrop-blur-2xl border-t border-white/5 md:hidden z-50">
+<div class="flex justify-around items-center h-16 px-2">
+<!-- Dashboard (Active) -->
+<div class="flex flex-col items-center justify-center w-full gap-1 bg-emerald-500/10 text-emerald-400 shadow-[inset_0_0_20px_rgba(74,225,118,0.1)] rounded-lg py-1 cursor-pointer">
+<span class="material-symbols-outlined text-xl" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-[8px] font-bold uppercase tracking-wider">Home</span>
+</div>
+<!-- Analytics -->
+<div class="flex flex-col items-center justify-center w-full gap-1 text-slate-500 hover:text-slate-200 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-xl" data-icon="insights">insights</span>
+<span class="text-[8px] font-bold uppercase tracking-wider">Analysis</span>
+</div>
+<!-- Simulator (CTA Center) -->
+<div class="relative -top-4 flex items-center justify-center">
+<div class="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary-container shadow-lg shadow-primary/30 flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-white text-2xl" data-icon="model_training">model_training</span>
+</div>
+</div>
+<!-- Reports -->
+<div class="flex flex-col items-center justify-center w-full gap-1 text-slate-500 hover:text-slate-200 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-xl" data-icon="description">description</span>
+<span class="text-[8px] font-bold uppercase tracking-wider">Reports</span>
+</div>
+<!-- Settings -->
+<div class="flex flex-col items-center justify-center w-full gap-1 text-slate-500 hover:text-slate-200 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+<span class="text-[8px] font-bold uppercase tracking-wider">Config</span>
+</div>
+</div>
+</div>
+<!-- Background Atmospheric Mesh (Invisible but affects layering) -->
+<div class="fixed inset-0 pointer-events-none -z-10 opacity-30">
+<div class="absolute top-0 left-1/4 w-64 h-64 bg-primary/10 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-1/4 right-0 w-80 h-80 bg-tertiary/10 blur-[150px] rounded-full"></div>
+</div>
+</body></html>

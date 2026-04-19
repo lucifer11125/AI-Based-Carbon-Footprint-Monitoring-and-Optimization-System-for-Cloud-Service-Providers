@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment
+.env
+.env.local
+
+# Build outputs
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python
+*.egg-info/
+.ruff_cache/
+
+# Database
+*.db
+
+# Large CSV files
+large_cloud_dataset_100k.csv
+
+# Old/deprecated code
+backend-old/
+analytics-backend/
+
+# Misc
+*.docx

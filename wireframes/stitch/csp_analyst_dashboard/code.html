@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CarbonLens AI - Company Deep-Dive</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary": "#d0bcff",
+            "inverse-surface": "#e0e2ea",
+            "inverse-primary": "#005ac2",
+            "error": "#ffb4ab",
+            "surface-bright": "#36393f",
+            "outline": "#8c909f",
+            "on-tertiary-fixed-variant": "#005321",
+            "on-error-container": "#ffdad6",
+            "secondary-container": "#571bc1",
+            "surface-container-low": "#181c21",
+            "secondary-fixed": "#e9ddff",
+            "surface-container": "#1c2025",
+            "surface-tint": "#adc6ff",
+            "tertiary-fixed-dim": "#4ae176",
+            "on-primary": "#002e6a",
+            "on-surface-variant": "#c2c6d6",
+            "tertiary-container": "#00a74b",
+            "on-surface": "#e0e2ea",
+            "on-secondary": "#3c0091",
+            "background": "#101419",
+            "tertiary-fixed": "#6bff8f",
+            "on-secondary-fixed": "#23005c",
+            "surface-container-highest": "#31353b",
+            "primary-fixed": "#d8e2ff",
+            "on-secondary-container": "#c4abff",
+            "surface-container-high": "#262a30",
+            "error-container": "#93000a",
+            "surface-container-lowest": "#0a0e13",
+            "on-tertiary-fixed": "#002109",
+            "surface-variant": "#31353b",
+            "inverse-on-surface": "#2d3136",
+            "primary": "#adc6ff",
+            "secondary-fixed-dim": "#d0bcff",
+            "tertiary": "#4ae176",
+            "primary-container": "#4d8eff",
+            "on-primary-fixed-variant": "#004395",
+            "on-background": "#e0e2ea",
+            "on-tertiary": "#003915",
+            "primary-fixed-dim": "#adc6ff",
+            "on-primary-container": "#00285d",
+            "surface": "#101419",
+            "on-primary-fixed": "#001a42",
+            "surface-dim": "#101419",
+            "on-tertiary-container": "#003111",
+            "on-error": "#690005",
+            "outline-variant": "#424754",
+            "on-secondary-fixed-variant": "#5516be"
+          },
+          fontFamily: {
+            "headline": ["Inter"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #101419;
+      color: #e0e2ea;
+      font-family: 'Inter', sans-serif;
+    }
+    .glass-panel {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(16px);
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+<!-- SideNavBar Anchor -->
+<aside class="flex flex-col fixed left-0 top-0 bottom-0 p-4 z-40 h-screen w-[240px] transition-all duration-300 ease-in-out bg-slate-900/50 backdrop-blur-2xl shadow-2xl shadow-blue-900/20 border-r border-white/5">
+<div class="text-lg font-black text-white flex items-center gap-2 mb-8">
+<div class="w-8 h-8 rounded bg-gradient-to-br from-primary to-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-sm">filter_center_focus</span>
+</div>
+<span>CarbonLens AI</span>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="text-slate-500 text-[10px] uppercase tracking-[0.15em] font-bold mb-4 px-3">Main Menu</div>
+<div class="flex items-center gap-3 px-3 py-2.5 text-slate-500 hover:text-slate-200 hover:bg-white/5 rounded-lg transition-transform duration-200 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Dashboard</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 bg-emerald-500/10 text-emerald-400 shadow-[inset_0_0_20px_rgba(74,225,118,0.1)] rounded-lg transition-transform duration-200 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-lg">business</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Companies</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 text-slate-500 hover:text-slate-200 hover:bg-white/5 rounded-lg transition-transform duration-200 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-lg">insights</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Analytics</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 text-slate-500 hover:text-slate-200 hover:bg-white/5 rounded-lg transition-transform duration-200 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-lg">verified</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Green Audit</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 text-slate-500 hover:text-slate-200 hover:bg-white/5 rounded-lg transition-transform duration-200 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-lg">auto_awesome</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Optimization</span>
+</div>
+</nav>
+<div class="mt-auto space-y-1">
+<div class="px-3 mb-4">
+<button class="w-full py-2.5 bg-gradient-to-r from-primary to-primary-container text-on-primary-container rounded-lg font-bold text-xs uppercase tracking-widest shadow-lg shadow-primary/20">
+          Run Simulation
+        </button>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-200 hover:bg-white/5 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined text-lg">help</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Support</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:text-slate-200 hover:bg-white/5 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined text-lg">logout</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-semibold">Sign Out</span>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-[240px] min-h-screen">
+<!-- TopAppBar Anchor -->
+<header class="sticky top-0 h-16 w-full flex justify-between items-center px-6 z-30 bg-slate-950/80 backdrop-blur-xl border-b border-white/5 shadow-[0_0_40px_rgba(173,198,255,0.06)]">
+<div class="flex items-center gap-4">
+<!-- Company Selector Pill -->
+<div class="flex items-center bg-surface-container-high rounded-full pl-1 pr-4 py-1 gap-3 border border-white/5 cursor-pointer hover:bg-surface-bright transition-all">
+<img class="w-8 h-8 rounded-full bg-white p-1" data-alt="minimalist professional logo of a global tech consulting company on a clean white circular background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVK5Jvv6J9Ej6CRQsX0yvkV4zrc8PQuwL3NSON3clmP1ldEsUU_MjwPCde_t4la_n5-xsbXJXjdvdx1z92LJkHwHL_fpg9pw1djtXg3wQA6zW2Lnn3fjRqmm9qLbSt1mx0QGkKHLWhzr3eSTyHzJ6oEe1Ye40LUAJ8WUUZ3DXYoOs41QITt1eL48WrsL4aCI8cdMgBz1asNIGnIyF2N_FlkSBzIuob8LVI6sqHeqhwzX_qFdsT66G_rJIMD38_FBNkfmb7DqqWGQ"/>
+<div class="flex flex-col">
+<span class="text-slate-100 font-bold text-sm leading-tight">Infosys</span>
+<span class="text-[10px] text-on-surface-variant font-bold tracking-widest uppercase">Technology Services</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm ml-2">expand_more</span>
+<div class="h-4 w-px bg-white/10 mx-1"></div>
+<span class="text-[10px] text-on-surface-variant font-medium">Last Audit: 2m ago</span>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-6">
+<span class="text-blue-400 font-semibold border-b-2 border-blue-400 pb-1 cursor-pointer">Dashboard</span>
+<span class="text-slate-400 font-medium hover:text-slate-100 cursor-pointer transition-all">Analytics</span>
+<span class="text-slate-400 font-medium hover:text-slate-100 cursor-pointer transition-all">Reports</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 transition-all active:scale-95 text-slate-400">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full border border-blue-400/30 p-0.5">
+<img class="w-full h-full rounded-full object-cover" data-alt="professional portrait of a male esg analyst with glasses in business casual attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_hW4toW588vFqcjAnoXxcOxwZakQ6svpIXwVx1LyJIXDqW1OIvOusBuBJ3jy3IzPr7KVGUI4I6LKVOnIYQdzjm_MFXjyh2YikMYL51vxIe0JAKttL14h6FKC_TX00xS9jPA3UcZLBEsoM7WOTA2v1viRn7xp5BIuINaV4LYtJNQk7lmsj7702FRaIXGRb2Ya0qBHtCm287f-QWS4F2sXtfEVpJu0KNz9KgcVbU73OfPUb4QV3U3AclzLgHXPOfozN675_3WVB6A"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-8 space-y-8 max-w-[1600px] mx-auto">
+<!-- Top Section: Score Hero + KPI Grid -->
+<section class="grid grid-cols-12 gap-6">
+<!-- Hero Sustainability Score Card -->
+<div class="col-span-12 lg:col-span-5 glass-panel rounded-2xl p-8 flex items-center gap-10 relative overflow-hidden group">
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-tertiary/10 rounded-full blur-[80px]"></div>
+<div class="relative w-36 h-36 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-white/5" cx="72" cy="72" fill="transparent" r="64" stroke="currentColor" stroke-width="10"></circle>
+<circle class="text-tertiary drop-shadow-[0_0_12px_rgba(74,225,118,0.4)]" cx="72" cy="72" fill="transparent" r="64" stroke="currentColor" stroke-dasharray="402" stroke-dashoffset="88" stroke-width="10"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-4xl font-black text-white">78</span>
+<span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter">Score</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-tertiary/10 text-tertiary rounded-full mb-4">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Sustainability Hero</span>
+</div>
+<h1 class="text-3xl font-black tracking-tight text-white mb-2 leading-none">Excellent</h1>
+<p class="text-on-surface-variant text-sm leading-relaxed max-w-[280px]">Infosys is currently performing 12% better than the industry average in scope 3 emissions.</p>
+<div class="mt-6 flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-widest cursor-pointer hover:underline">
+              View Detailed Breakdown <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- KPI Grid -->
+<div class="col-span-12 lg:col-span-7 grid grid-cols-3 gap-6">
+<!-- KPI 1 -->
+<div class="bg-surface-container rounded-2xl p-6 border border-white/5 flex flex-col justify-between hover:bg-surface-container-high transition-all">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg bg-red-400/10 flex items-center justify-center text-red-400">
+<span class="material-symbols-outlined">co2</span>
+</div>
+<span class="text-[10px] font-bold text-red-400 uppercase tracking-widest">+2.4%</span>
+</div>
+<div class="mt-8">
+<span class="block text-[10px] font-bold text-on-surface-variant uppercase tracking-[0.15em] mb-1">Carbon Emission</span>
+<span class="text-2xl font-black text-white">38,420 <span class="text-sm font-medium text-on-surface-variant">tCO2e</span></span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container rounded-2xl p-6 border border-white/5 flex flex-col justify-between hover:bg-surface-container-high transition-all">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg bg-blue-400/10 flex items-center justify-center text-blue-400">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<span class="text-[10px] font-bold text-tertiary uppercase tracking-widest">-5.1%</span>
+</div>
+<div class="mt-8">
+<span class="block text-[10px] font-bold text-on-surface-variant uppercase tracking-[0.15em] mb-1">Energy Consumed</span>
+<span class="text-2xl font-black text-white">0.24 <span class="text-sm font-medium text-on-surface-variant">PW·h</span></span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container rounded-2xl p-6 border border-white/5 flex flex-col justify-between hover:bg-surface-container-high transition-all">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg bg-emerald-400/10 flex items-center justify-center text-emerald-400">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Steady</span>
+</div>
+<div class="mt-8">
+<span class="block text-[10px] font-bold text-on-surface-variant uppercase tracking-[0.15em] mb-1">Monthly Cost</span>
+<span class="text-2xl font-black text-white">$542,000</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Charts Section: Bento Grid -->
+<section class="grid grid-cols-12 gap-6">
+<!-- Area Chart: Time-Series -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-low rounded-2xl p-8 border border-white/5">
+<div class="flex justify-between items-center mb-10">
+<div>
+<h3 class="text-lg font-bold text-white leading-none">Consumption Trends</h3>
+<span class="text-xs text-on-surface-variant font-medium">Historical data for the last 6 months</span>
+</div>
+<div class="flex bg-surface-container-lowest rounded-lg p-1">
+<button class="px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest rounded-md bg-primary text-on-primary-container shadow-sm">Carbon</button>
+<button class="px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest rounded-md text-on-surface-variant hover:text-white transition-all">Energy</button>
+<button class="px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest rounded-md text-on-surface-variant hover:text-white transition-all">Cost</button>
+</div>
+</div>
+<!-- Chart Mockup -->
+<div class="relative h-[280px] w-full mt-4 group">
+<div class="absolute inset-0 flex items-end justify-between px-2">
+<div class="h-[40%] w-[12%] bg-primary/20 rounded-t-lg relative group-hover:bg-primary/30 transition-all"></div>
+<div class="h-[55%] w-[12%] bg-primary/20 rounded-t-lg relative group-hover:bg-primary/30 transition-all"></div>
+<div class="h-[45%] w-[12%] bg-primary/20 rounded-t-lg relative group-hover:bg-primary/30 transition-all"></div>
+<div class="h-[70%] w-[12%] bg-primary/20 rounded-t-lg relative group-hover:bg-primary/30 transition-all"></div>
+<div class="h-[60%] w-[12%] bg-primary/20 rounded-t-lg relative group-hover:bg-primary/30 transition-all"></div>
+<div class="h-[85%] w-[12%] bg-primary/20 rounded-t-lg relative group-hover:bg-primary/30 transition-all"></div>
+</div>
+<!-- Trend Line -->
+<svg class="absolute inset-0 w-full h-full overflow-visible" preserveaspectratio="none">
+<path class="drop-shadow-[0_0_8px_rgba(173,198,255,0.6)]" d="M0,180 Q100,140 200,160 T400,100 T600,120 T800,40" fill="none" stroke="#adc6ff" stroke-linecap="round" stroke-width="4"></path>
+<path d="M0,180 Q100,140 200,160 T400,100 T600,120 T800,40 V280 H0 Z" fill="url(#gradient-vapor)" fill-opacity="0.2"></path>
+<defs>
+<lineargradient id="gradient-vapor" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#adc6ff"></stop>
+<stop offset="100%" stop-color="transparent"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute bottom-[-24px] left-0 w-full flex justify-between px-2 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">
+<span>JAN</span><span>FEB</span><span>MAR</span><span>APR</span><span>MAY</span><span>JUN</span>
+</div>
+</div>
+</div>
+<!-- Service-wise Donut -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-low rounded-2xl p-8 border border-white/5 flex flex-col">
+<h3 class="text-lg font-bold text-white leading-none mb-1">Service Breakdown</h3>
+<span class="text-xs text-on-surface-variant font-medium mb-10">Resource allocation by category</span>
+<div class="flex-1 flex flex-col justify-center items-center relative">
+<div class="w-48 h-48 rounded-full border-[16px] border-surface-container-highest flex items-center justify-center">
+<div class="w-full h-full rounded-full border-[16px] border-primary border-r-transparent border-b-transparent -m-[16px] transform rotate-[30deg]"></div>
+<div class="flex flex-col items-center">
+<span class="text-2xl font-black text-white">42%</span>
+<span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Compute</span>
+</div>
+</div>
+<div class="mt-10 w-full space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Compute</span>
+</div>
+<span class="text-xs font-bold text-white">16,136 t</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Storage</span>
+</div>
+<span class="text-xs font-bold text-white">8,068 t</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Networking</span>
+</div>
+<span class="text-xs font-bold text-white">6,454 t</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-surface-bright"></div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Other</span>
+</div>
+<span class="text-xs font-bold text-white">7,762 t</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Grid: Insights + Optimization + Audit -->
+<section class="grid grid-cols-12 gap-6">
+<!-- Optimization Recommendations -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-6">
+<div class="flex items-center justify-between px-2">
+<h3 class="text-lg font-bold text-white leading-none">Recommendations</h3>
+<span class="text-[10px] font-bold text-primary uppercase tracking-widest cursor-pointer">Analyze All</span>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<!-- Recommendation Card 1 -->
+<div class="bg-surface-container rounded-xl p-5 border border-white/5 hover:border-primary/20 transition-all flex gap-4 group">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">memory</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="text-sm font-bold text-white">Right-size EC2 Instances</span>
+<span class="text-[9px] px-2 py-0.5 bg-red-400/20 text-red-400 rounded-full font-bold uppercase tracking-tighter">Critical</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-4 leading-relaxed">Upgrade 42 legacy instances in us-east-1 to Graviton3 instances.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">-18% Carbon</span>
+</div>
+<button class="px-4 py-1.5 bg-primary/10 text-primary hover:bg-primary hover:text-on-primary-container rounded-md text-[10px] font-black uppercase tracking-widest transition-all">Apply</button>
+</div>
+</div>
+</div>
+<!-- Recommendation Card 2 -->
+<div class="bg-surface-container rounded-xl p-5 border border-white/5 hover:border-primary/20 transition-all flex gap-4 group">
+<div class="w-12 h-12 rounded-lg bg-blue-400/10 flex items-center justify-center text-blue-400 shrink-0">
+<span class="material-symbols-outlined">storage</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="text-sm font-bold text-white">S3 Lifecycle Policy</span>
+<span class="text-[9px] px-2 py-0.5 bg-blue-400/20 text-blue-400 rounded-full font-bold uppercase tracking-tighter">Medium</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-4 leading-relaxed">Move non-critical logs to Glacier Deep Archive to reduce heating costs.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">-4% Carbon</span>
+</div>
+<button class="px-4 py-1.5 bg-primary/10 text-primary hover:bg-primary hover:text-on-primary-container rounded-md text-[10px] font-black uppercase tracking-widest transition-all">Apply</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Green Audit Panel -->
+<div class="col-span-12 lg:col-span-3 bg-surface-container-low rounded-2xl p-8 border border-white/5 flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-white leading-none">Green Audit</h3>
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></div>
+<span class="text-[10px] font-bold text-tertiary uppercase tracking-widest">Compliant</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto no-scrollbar space-y-6">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="flex-1">
+<span class="block text-xs font-bold text-white mb-1">Scope 2 Data Quality</span>
+<span class="block text-[10px] text-on-surface-variant">Validated via AWS API</span>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="flex-1">
+<span class="block text-xs font-bold text-white mb-1">Renewable Offsets</span>
+<span class="block text-[10px] text-on-surface-variant">REC verification complete</span>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-orange-400">warning</span>
+<div class="flex-1">
+<span class="block text-xs font-bold text-white mb-1">Supply Chain Audit</span>
+<span class="block text-[10px] text-on-surface-variant">3 Vendors pending response</span>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="flex-1">
+<span class="block text-xs font-bold text-white mb-1">Region Efficiency</span>
+<span class="block text-[10px] text-on-surface-variant">Low carbon intensity regions used</span>
+</div>
+</div>
+</div>
+<button class="mt-8 w-full py-3 bg-surface-container-highest hover:bg-surface-bright rounded-xl text-xs font-bold text-white uppercase tracking-[0.15em] transition-all">Download Audit PDF</button>
+</div>
+<!-- AI Insights Panel -->
+<div class="col-span-12 lg:col-span-4 bg-secondary-container/10 rounded-2xl p-8 border border-secondary-container/20 relative overflow-hidden flex flex-col">
+<div class="absolute inset-0 bg-gradient-to-br from-secondary-container/20 to-transparent pointer-events-none"></div>
+<div class="flex items-center gap-3 mb-8 relative">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h3 class="text-lg font-bold text-secondary tracking-tight">CarbonLens AI Analysis</h3>
+</div>
+<div class="flex-1 space-y-6 relative">
+<div class="flex justify-start">
+<div class="max-w-[85%] bg-white/5 backdrop-blur-md rounded-2xl rounded-tl-none p-4 text-sm text-on-surface leading-relaxed shadow-lg border border-white/5">
+                Infosys is showing a significant efficiency spike in the <span class="text-secondary font-bold">Mumbai (ap-south-1)</span> region. This correlates with the new green power grid activation.
+              </div>
+</div>
+<div class="flex justify-start">
+<div class="max-w-[85%] bg-white/5 backdrop-blur-md rounded-2xl rounded-tl-none p-4 text-sm text-on-surface leading-relaxed shadow-lg border border-white/5">
+                I recommend prioritizing the <span class="text-primary font-bold">Lambda migration</span> for background workers; it could reduce idle energy waste by up to 24%.
+              </div>
+</div>
+<!-- Typing Indicator -->
+<div class="flex items-center gap-2 px-2">
+<div class="flex gap-1">
+<div class="w-1 h-1 bg-secondary rounded-full animate-bounce"></div>
+<div class="w-1 h-1 bg-secondary rounded-full animate-bounce [animation-delay:0.2s]"></div>
+<div class="w-1 h-1 bg-secondary rounded-full animate-bounce [animation-delay:0.4s]"></div>
+</div>
+<span class="text-[10px] font-bold text-secondary/60 uppercase tracking-widest">Processing Data...</span>
+</div>
+</div>
+<div class="mt-8 bg-surface-container-highest/50 rounded-xl p-3 flex items-center gap-3 border border-white/5">
+<span class="text-xs text-on-surface-variant flex-1 px-2">Ask AI about this dashboard...</span>
+<div class="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center text-on-secondary cursor-pointer">
+<span class="material-symbols-outlined text-sm">send</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Region-wise Horizontal Bars -->
+<section class="bg-surface-container-low rounded-2xl p-8 border border-white/5">
+<div class="flex items-center justify-between mb-10">
+<h3 class="text-lg font-bold text-white">Region Efficiency Matrix</h3>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Ordered by Intensity</span>
+</div>
+<div class="space-y-8">
+<!-- Region 1 -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<div class="flex items-center gap-3">
+<span class="text-xs font-bold text-white">AWS us-east-1</span>
+<span class="text-[9px] px-2 py-0.5 bg-red-400/20 text-red-400 rounded-full font-bold uppercase tracking-tighter">High Carbon</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant">14,240 tCO2e</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full w-[85%] bg-red-400 rounded-full"></div>
+</div>
+</div>
+<!-- Region 2 -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<div class="flex items-center gap-3">
+<span class="text-xs font-bold text-white">AWS eu-central-1</span>
+<span class="text-[9px] px-2 py-0.5 bg-tertiary/20 text-tertiary rounded-full font-bold uppercase tracking-tighter">Renewable Mix</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant">8,112 tCO2e</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full w-[45%] bg-tertiary rounded-full"></div>
+</div>
+</div>
+<!-- Region 3 -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<div class="flex items-center gap-3">
+<span class="text-xs font-bold text-white">AWS ap-south-1</span>
+<span class="text-[9px] px-2 py-0.5 bg-tertiary/20 text-tertiary rounded-full font-bold uppercase tracking-tighter">Optimized</span>
+</div>
+<span class="text-xs font-bold text-on-surface-variant">6,020 tCO2e</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full w-[35%] bg-tertiary rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Navigation Pivot (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-surface-container-high/90 backdrop-blur-xl border-t border-white/5 flex items-center justify-around px-4 z-50">
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+<span class="text-[8px] font-bold uppercase tracking-widest">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-lg">business</span>
+<span class="text-[8px] font-bold uppercase tracking-widest">Deep-Dive</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">insights</span>
+<span class="text-[8px] font-bold uppercase tracking-widest">Data</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-lg">settings</span>
+<span class="text-[8px] font-bold uppercase tracking-widest">Config</span>
+</div>
+</nav>
+</body></html>

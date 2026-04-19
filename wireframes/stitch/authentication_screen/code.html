@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign In | CarbonLens AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed-variant": "#5516be",
+              "surface-variant": "#31353b",
+              "on-tertiary-container": "#003111",
+              "background": "#0a0e13",
+              "secondary-fixed": "#e9ddff",
+              "tertiary-fixed": "#6bff8f",
+              "on-tertiary": "#003915",
+              "on-surface": "#e0e2ea",
+              "outline": "#8c909f",
+              "on-surface-variant": "#c2c6d6",
+              "primary-fixed-dim": "#adc6ff",
+              "on-tertiary-fixed": "#002109",
+              "surface-container-lowest": "#0a0e13",
+              "surface-container-highest": "#31353b",
+              "surface-container": "#1c2025",
+              "tertiary": "#4ae176",
+              "surface-tint": "#adc6ff",
+              "on-primary": "#002e6a",
+              "inverse-surface": "#e0e2ea",
+              "inverse-primary": "#005ac2",
+              "inverse-on-surface": "#2d3136",
+              "on-primary-container": "#00285d",
+              "surface": "#101419",
+              "on-primary-fixed": "#001a42",
+              "on-secondary-fixed": "#23005c",
+              "tertiary-container": "#00a74b",
+              "surface-bright": "#36393f",
+              "primary-container": "#4d8eff",
+              "outline-variant": "#424754",
+              "on-secondary": "#3c0091",
+              "secondary-container": "#571bc1",
+              "on-background": "#e0e2ea",
+              "surface-container-low": "#181c21",
+              "secondary-fixed-dim": "#d0bcff",
+              "primary": "#adc6ff",
+              "surface-dim": "#101419",
+              "primary-fixed": "#d8e2ff",
+              "surface-container-high": "#262a30",
+              "on-secondary-container": "#c4abff",
+              "on-error": "#690005",
+              "tertiary-fixed-dim": "#4ae176",
+              "on-tertiary-fixed-variant": "#005321",
+              "on-error-container": "#ffdad6",
+              "secondary": "#d0bcff",
+              "on-primary-fixed-variant": "#004395",
+              "error": "#ffb4ab",
+              "error-container": "#93000a"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0e13;
+        }
+        .mesh-gradient {
+            background: radial-gradient(circle at 0% 0%, rgba(77, 142, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, rgba(74, 225, 118, 0.1) 0%, transparent 50%);
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            background: rgba(17, 24, 39, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .social-button-glass {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .social-button-glass:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .primary-gradient-cta {
+            background: linear-gradient(135deg, #adc6ff 0%, #4d8eff 100%);
+            box-shadow: 0 0 20px rgba(77, 142, 255, 0.3);
+        }
+        .primary-gradient-cta:active {
+            transform: scale(0.98);
+        }
+        .glow-leaf {
+            filter: drop-shadow(0 0 8px rgba(74, 225, 118, 0.6));
+        }
+        .input-glow:focus {
+            box-shadow: 0 0 0 2px rgba(173, 198, 255, 0.2);
+            border-color: rgba(173, 198, 255, 0.4);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-primary/30 relative overflow-hidden">
+<!-- Background Elements -->
+<div class="fixed inset-0 z-[-1] mesh-gradient"></div>
+<div class="fixed inset-0 z-[-1] opacity-30" data-alt="slow-drifting subtle particle field with soft grain texture on a deep ink background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHNV3bvfGJRO-8zmIwDc9AEGDnwkT7nV9rtwbsYDu1Jj30rk3eVo0wUmY3ssxET1iBs4TghSld-SdsZ8YKNnpB_D0cr60wvVpu_CWam_OfwSe5BjMuExHyIAU2nZJI9ZmiQaIkTTqGV5wCf5Qm-AU3yRe0Eop7RIhuUHpQcT1rOrxDlS4CqMKp0IUZquXVLL-yaNFkEtQgmQUxvNJru3OCKiWekVyakNLfuZzRKSNzoQ0FUKmJBf-Ox90Lq6HnlLEOgktejYPC0Q');"></div>
+<!-- Top Navigation (Shell Supressed as per Task: focused journey) -->
+<!-- We skip TopNavBar to keep focus on the login action -->
+<main class="flex-grow flex items-center justify-center px-4 py-12 relative">
+<div class="w-full max-w-[480px] animate-in fade-in slide-in-from-bottom-4 duration-1000">
+<!-- Branding Header -->
+<div class="flex flex-col items-center mb-8 text-center">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center mb-6 glass-panel">
+<span class="material-symbols-outlined text-tertiary text-4xl glow-leaf" data-icon="eco" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<h1 class="text-[32px] font-bold tracking-tight text-primary leading-tight mb-2">
+                    Sign in to CarbonLens AI
+                </h1>
+<p class="text-[14px] text-on-surface-variant font-medium opacity-80">
+                    Enter your credentials to access your dashboard
+                </p>
+</div>
+<!-- Main Auth Panel -->
+<div class="glass-panel p-8 md:p-10 rounded-[16px] shadow-[0_0_40px_rgba(173,198,255,0.06)]">
+<!-- Social Logins -->
+<div class="grid grid-cols-2 gap-4 mb-8">
+<button class="social-button-glass flex items-center justify-center gap-3 py-3 px-4 rounded-full text-sm font-semibold text-on-surface">
+<img alt="Google" class="w-5 h-5" data-alt="minimalist google logo icon on a transparent background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb4XhwDI2RIbl2RJlCC6ARSqlp45e3bjbFc1o4Cc-PJCghkfYpyY9t-6W5afF5mHjo7O06ja9ziV1AmB7L46-IGLbZ5mSCYu0Rks4Mad6teNjxGLJe-PlmHmeVPhm90qSz-TbFw5QrwHtrN1by_kUOg1JVA3zHCrwQeN4W-BIZysfgO4QX8hRc_B8YOpYK5N89xULixenlkBJoBaFeoAlq023Z_T-CGALsjNuKB5cKCz691eIacVUOAGMTkBM-Zf0hg3yLPRrnTQ"/>
+                        Google
+                    </button>
+<button class="social-button-glass flex items-center justify-center gap-3 py-3 px-4 rounded-full text-sm font-semibold text-on-surface">
+<span class="material-symbols-outlined text-xl" data-icon="code">code</span>
+                        GitHub
+                    </button>
+</div>
+<!-- Divider -->
+<div class="flex items-center gap-4 mb-8">
+<div class="h-[1px] flex-grow bg-white/10"></div>
+<span class="text-[10px] tracking-[0.15em] uppercase font-bold text-on-surface-variant">Or continue with email</span>
+<div class="h-[1px] flex-grow bg-white/10"></div>
+</div>
+<!-- Form -->
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="text-[11px] tracking-[0.15em] uppercase font-bold text-on-surface-variant ml-1" for="email">Email Address</label>
+<input class="w-full bg-surface-container-highest border-none text-on-surface placeholder:text-slate-600 rounded-[12px] py-3.5 px-4 outline-none focus:ring-0 input-glow transition-all duration-200" id="email" placeholder="name@company.com" type="email"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center ml-1">
+<label class="text-[11px] tracking-[0.15em] uppercase font-bold text-on-surface-variant" for="password">Password</label>
+<a class="text-[11px] font-semibold text-primary hover:text-primary-container transition-colors" href="#">Forgot password?</a>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container-highest border-none text-on-surface placeholder:text-slate-600 rounded-[12px] py-3.5 px-4 outline-none focus:ring-0 input-glow transition-all duration-200" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant/50 hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<input class="w-4 h-4 rounded border-white/10 bg-surface-container-highest text-primary focus:ring-offset-background focus:ring-primary" id="remember" type="checkbox"/>
+<label class="text-sm font-medium text-on-surface-variant" for="remember">Remember me for 30 days</label>
+</div>
+<button class="w-full primary-gradient-cta text-on-primary font-bold py-4 rounded-[8px] transition-all duration-300 flex items-center justify-center gap-2 group" type="submit">
+                        Sign In
+                        <span class="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<!-- Footer Link -->
+<p class="mt-10 text-center text-sm font-medium text-on-surface-variant">
+                    Don't have an account? <a class="text-primary hover:text-primary-container font-bold transition-colors" href="#">Sign up</a>
+</p>
+</div>
+<!-- Trust Indicator -->
+<div class="mt-12 flex flex-col items-center opacity-40">
+<span class="text-[10px] tracking-[0.2em] uppercase font-bold text-on-surface-variant mb-4">Trusted by industry leaders</span>
+<div class="flex gap-8 items-center filter grayscale invert">
+<img alt="Partner" class="h-4 w-auto" data-alt="minimalist corporate logo of a consulting firm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFsSaWoGrbH3szHncxJFIqETfIeqlG-kF0aV-wMapKlnsF2aEpcTjkrEzHfHVZ46sZ-ICapBPuAsZ_f-8xvGHgloyScUF1N1g2uD3-cJ_VVwl078lmwrFS6HZe1OORzjh4J51KosV2zoarD6YBBIQck-O8ZxUlE0E1THBguRg4MIwf07R-EEJQvZt1vArkb2k3nFmRMZAJPArGBHqVh1FVRHPDNhZdaXhN-LBgsmicFm9KkiHe--pumHneoMqC6kBIGx9-G4hphA"/>
+<img alt="Partner" class="h-4 w-auto" data-alt="minimalist tech company logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5rT2RoipGlf3aBsscq2xekFjFtu9ZClYVmSnMabXDu9xh6lXa3d_IMzmcfsyxEPdC1LKXzYkBOsz815QDJSibRKi3zLjd-5giBuxjFi6C2jJZOcwJ-a-eGZ5VyxX7gz5Tq1IbgQ57N2W_O-IIVLNAC30V7JT9Ymxpc-NSfi5AZaRf6QcVABfd0U8CZeDgavk07WkRJw7O4yj372IhTskuqqoStEPDzNXqki4F7o5f1_nj31kvynCZPVvYyIZ6Xsb3DOvYhH_cbQ"/>
+<img alt="Partner" class="h-4 w-auto" data-alt="minimalist search engine company logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCARmRnjNZro2-EXhO1_5EnNvgFYTJVCRB7xkfzwA598tnSKIw61Gn8NOurwGVxkK44UicHrr9fp2ZVOi8XV6zLiaWsnI4ROO260ObIWbdaM6lGiC5Fx6qIhedRZqOjYpFG6_FhKYu1ne-o9q-rpXi8PhgAO-r1dUF-yyfedr4hjDgekWZI-fhqq1RWvORgOucUtNz73opl6LWVh9KRaD7_WyxIAcsCIKVzTfnnRnj4Lz_uVurjlA3RkZ2MhOjq8Cc4UWx5cUzPPA"/>
+</div>
+</div>
+</div>
+</main>
+<!-- Shared Component: Footer -->
+<footer class="w-full border-t border-white/5 bg-slate-950 flex flex-col md:flex-row justify-between items-center py-8 px-8 gap-6 w-full">
+<div class="text-sm font-bold text-slate-200">CarbonLens AI</div>
+<div class="flex gap-8">
+<a class="text-[10px] tracking-[0.15em] uppercase font-semibold text-slate-500 hover:text-slate-200 transition-all duration-300 ease-in-out" href="#">Privacy Policy</a>
+<a class="text-[10px] tracking-[0.15em] uppercase font-semibold text-slate-500 hover:text-slate-200 transition-all duration-300 ease-in-out" href="#">Terms of Service</a>
+<a class="text-[10px] tracking-[0.15em] uppercase font-semibold text-slate-500 hover:text-slate-200 transition-all duration-300 ease-in-out" href="#">Security</a>
+<a class="text-[10px] tracking-[0.15em] uppercase font-semibold text-slate-500 hover:text-slate-200 transition-all duration-300 ease-in-out" href="#">Status</a>
+</div>
+<div class="text-[10px] tracking-[0.15em] uppercase font-semibold text-slate-500">© 2024 CarbonLens AI. Precision ESG Intelligence.</div>
+</footer>
+</body></html>
