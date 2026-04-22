@@ -36,38 +36,77 @@ This document provides structured content for a slide deck or presentation about
 
 ---
 
-## Slide 4: High-Level Architecture & Tech Stack
-**Heading: Robust, Fast, and Scalable Architecture**
-
-> *(Use the diagram below to recreate a block-diagram connecting your Frontend, API, and Database)*
+## Slide 4: Tech Stack
+**Heading: Technology Stack**
 
 ```mermaid
 graph TD
-    Client[Browser Accounts] -->|HTTPS & JWT| Frontend
-    subgraph "Frontend Engine"
-        Frontend(React 18 + Vite)
-        UI(Custom CSS | Recharts | Framer M.)
-        Frontend --- UI
+    Client["Browser (User)"] -->|HTTPS + JWT Auth| FE
+
+    subgraph "Frontend"
+        FE["React 18 + Vite 5"]
+        FE --- Charts["Recharts (Visualization)"]
+        FE --- Anim["Framer Motion (Animations)"]
+        FE --- Icons["Lucide React (Icons)"]
+        FE --- HTTP["Axios (API Client)"]
+        FE --- PDF["jsPDF (Report Export)"]
+        FE --- Router["React Router v6"]
     end
-    
-    Frontend <-->|Axios API Requests| Backend
-    
-    subgraph "Backend Engine"
-        Backend(FastAPI + Uvicorn)
-        Sec(Role-based Auth)
-        Logic(Carbon Metrics + AI Models)
-        Backend --- Sec
-        Backend --- Logic
+
+    HTTP <-->|REST API| BE
+
+    subgraph "Backend"
+        BE["FastAPI + Uvicorn"]
+        BE --- Auth["JWT Auth (python-jose + passlib/bcrypt)"]
+        BE --- ORM["SQLAlchemy ORM + Pydantic"]
+        BE --- ML["Pandas + Scikit-learn"]
     end
-    
-    Backend <-->|SQLAlchemy ORM| DB[(SQLite Database)]
-    Logic <-->|Pandas + Scikit-learn| ML[ML Predictions & Reports]
+
+    ORM <-->|Read/Write| DB[("SQLite Database")]
+    ML -->|Forecasting & Metrics| DB
 ```
 
-**Technology Highlights:**
-- **Frontend Layer:** React 18, Vite, Recharts, Framer Motion
-- **API Engine:** FastAPI, Python, JWT Bearer Auth
-- **Data & ML Layer:** SQLite, Pandas, Scikit-learn
+**Frontend:**
+| Technology | Purpose |
+|---|---|
+| React 18 | Component-based Dashboard UI |
+| Vite 5 | Build tool & dev server |
+| Recharts | Data visualization (charts, graphs) |
+| Framer Motion | Micro-animations & transitions |
+| Lucide React | Icon system |
+| Axios | HTTP client with JWT header injection |
+| React Router v6 | Client-side routing & role guards |
+| jsPDF | Client-side PDF report generation |
+
+**Backend:**
+| Technology | Purpose |
+|---|---|
+| Python (FastAPI) | Async REST API framework |
+| Uvicorn | ASGI server |
+| SQLAlchemy | ORM for database operations |
+| Pydantic | Request/response validation schemas |
+| python-jose | JWT token creation & verification |
+| passlib + bcrypt | Secure password hashing |
+| python-dotenv | Environment configuration |
+| python-multipart | File upload handling |
+
+**AI & Analytics:**
+| Technology | Purpose |
+|---|---|
+| Pandas | Data processing & CSV normalization |
+| Scikit-learn | ML regression models for carbon prediction & forecasting |
+
+**Database:**
+| Technology | Purpose |
+|---|---|
+| SQLite | Relational storage for users, companies, datasets, metrics, predictions, audits, reports |
+| SQLAlchemy ORM | Schema management & query abstraction |
+
+**Deployment:**
+| Technology | Purpose |
+|---|---|
+| Docker | Containerized multi-service deployment |
+| Docker Compose | Service orchestration (frontend + backend) |
 
 ---
 

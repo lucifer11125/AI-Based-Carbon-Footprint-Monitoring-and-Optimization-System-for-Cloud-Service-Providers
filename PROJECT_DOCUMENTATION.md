@@ -319,3 +319,181 @@ Region factors are defined in `backend/core/config.py`.
 - On some Windows setups, `uvicorn --reload` may be blocked by process permissions. Use `uvicorn main:app --port 8000` when that happens.
 - For production, replace the development SQLite setup with a managed database and set a strong `SECRET_KEY`.
 - Do not commit real production secrets into `.env` files.
+
+## 13. Green Audit
+
+The Green Audit is an ESG (Environmental, Social, Governance) compliance assessment that evaluates how sustainably a company's cloud infrastructure is being used. It analyzes a dataset's usage records and produces a sustainability scorecard with actionable recommendations.
+
+### What It Calculates
+
+The audit engine (`services/green_audit.py`) queries all `UsageRecord` rows for a dataset using SQL aggregates and computes five efficiency scores (each 0–100%):
+
+| Score | What It Measures | How It Is Calculated |
+|---|---|---|
+| Compute Efficiency | How well CPU is utilized vs. idle | `100 - avg_idle × 1.5` |
+| Storage Utilization | Consistency of storage usage | `(avg_storage / max_storage) × 100` |
+| Network Footprint | Network data transfer overhead | `100 - (avg_network / avg_cpu) × 5` |
+| Region Efficiency | Whether workloads run in low-carbon regions | `(1 - avg_region_factor) × 150` |
+| Idle Waste Score | Percentage of records with high idle time (>20%) | `100 - (high_idle_count / total × 100)` |
+
+These are combined into a weighted overall score:
+
+```text
+Overall = Compute(25%) + Storage(20%) + Network(15%) + Region(25%) + Idle Waste(15%)
+```
+
+The overall score determines the risk level:
+
+| Score Range | Risk Level |
+|---|---|
+| ≥ 75 | Low Risk |
+| 50–74 | Moderate Risk |
+| < 50 | High Risk |
+
+### What It Shows on the UI
+
+The Green Audit page (`pages/GreenAuditPage.jsx`) displays three sections:
+
+1. **Overall Score Banner** — A large circular score with the risk status (Low, Moderate, or High) and the main issue identified.
+2. **Five Category Cards** — Each category shows a percentage score and an animated progress bar for Compute Efficiency, Storage Utilization, Network Footprint, Region Efficiency, and Idle Waste Score.
+3. **Audit Recommendations** — Prioritized action items (High, Medium, or Low priority) with estimated carbon reduction impact. Examples include:
+   - Optimize Compute Resources — right-size instances when idle rate is high.
+   - Migrate to Low-Carbon Regions — move workloads to cleaner energy grids.
+   - Implement Auto-Shutdown Policies — schedule shutdowns during non-peak hours.
+   - Implement Storage Tiering — move infrequently accessed data to cold storage tiers.
+   - Optimize Network Transfer — implement CDN and compression for high transfer rates.
+   - Enable Carbon-Aware Scheduling — run batch jobs during low-carbon grid periods.
+
+### Access
+
+The Green Audit page is available at `/audit` for `csp_analyst` and `company_user` roles.
+
+## 14. AI & ML Models
+
+### Linear Regression — Carbon Forecasting
+
+The AI predictor (`services/ai_predictor.py`) uses Scikit-learn `LinearRegression` to forecast carbon emissions.
+
+- **Training Data:** Monthly `ProcessedMetric` records for a dataset.
+- **Feature (X):** Sequential time index (month number).
+- **Target (y):** `total_carbon` per month.
+- **Output:** Predicted carbon for the next 3 months, each with:
+  - Trend direction: Increasing (>5% rise), Decreasing (>5% drop), or Stable.
+  - Confidence score: `min(0.95, 0.5 + num_months × 0.03)`.
+
+### Physics-Based Energy & Carbon Model
+
+The metrics engine (`services/metrics_engine.py`) computes emissions from raw usage data using physics-based formulas:
+
+```text
+Energy (kWh) = (CPU Hours × 0.003) + (Storage GB × 0.0001) + (Network GB × 0.002)
+Adjusted Energy = Energy × (1 + idle_percent / 100 × 0.25)
+Carbon (kg CO₂e) = Adjusted Energy × 0.40 × Region Factor
+```
+
+Region emission factors are defined in `core/config.py` and represent real-world grid carbon intensity values (e.g., `eu-north-1` Stockholm = 0.01 due to renewables, `ap-south-1` Mumbai = 0.70 due to coal).
+
+A sustainability score is also computed per month:
+
+```text
+Sustainability = (idle_score × 0.3) + (region_score × 0.4) + (50 × 0.3)
+```
+
+### Weighted Multi-Criteria Scoring — Green Audit
+
+The green audit service (`services/green_audit.py`) evaluates 5 sustainability dimensions using SQL aggregates and combines them with fixed weights:
+
+```text
+Overall = Compute(25%) + Storage(20%) + Network(15%) + Region(25%) + Idle Waste(15%)
+```
+
+A rule engine triggers specific recommendations when category scores fall below defined thresholds.
+
+### Parametric Simulation Model — What-If Simulator
+
+The simulator (`services/simulator.py`) breaks carbon into 4 portions (CPU 40%, Storage 25%, Network 20%, Idle 15%) and applies user-defined reductions, region shifts, and renewable energy offsets:
+
+```text
+Simulated = (new_cpu + new_storage + network + new_idle) × region_ratio × renewable_offset
+```
+
+### Context-Aware Recommendation Engine
+
+The recommendations service (`services/recommendations.py`) queries aggregate usage statistics and generates quantified recommendations only when specific thresholds are exceeded:
+
+| Condition | Recommendation |
+|---|---|
+| avg idle > 10% | Shut down idle resources |
+| avg CPU > 500 hours | Right-size CPU allocations |
+| >30% high-carbon regions | Migrate to low-carbon regions |
+| avg storage > 3000 GB | Implement storage tiering |
+| avg network > 5000 GB | Optimize network transfer |
+| avg cost > $10,000 | Purchase reserved capacity |
+
+Each recommendation includes calculated expected carbon reduction (kg CO₂e) and cost savings ($).
+
+## 15. MVC Architecture
+
+The project follows a modified MVC pattern with a decoupled View layer. The React frontend communicates with the FastAPI backend via REST API.
+
+### Model — Data & Business Logic
+
+Location: `backend/models/`, `backend/schemas/`, `backend/services/`, `backend/core/`
+
+| Component | Files | Responsibility |
+|---|---|---|
+| Database Models | `models/sql_models.py` | 10 SQLAlchemy ORM classes defining the database schema |
+| Schemas | `schemas/schemas.py` | Pydantic validation and serialization for request/response data |
+| Database Engine | `core/database.py` | SQLAlchemy engine, session lifecycle |
+| Metrics Engine | `services/metrics_engine.py` | Carbon and energy computation |
+| AI Predictor | `services/ai_predictor.py` | ML model training and forecasting |
+| Green Audit | `services/green_audit.py` | Sustainability scoring algorithm |
+| Recommendations | `services/recommendations.py` | Context-aware recommendation generation |
+| Simulator | `services/simulator.py` | What-if parametric simulation |
+
+### Controller — Request Handling & Routing
+
+Location: `backend/api/endpoints/`, `backend/main.py`
+
+| Component | Files | Responsibility |
+|---|---|---|
+| Auth Controller | `api/endpoints/auth.py` | Login, register, password reset |
+| Dataset Controller | `api/endpoints/datasets.py` | Upload, dashboard, predictions, audit, simulation |
+| Company Controller | `api/endpoints/companies.py` | Company CRUD |
+| Admin Controller | `api/endpoints/admin.py` | Platform overview, user management |
+| Report Controller | `api/endpoints/reports.py` | Report create, upload, download |
+| App Entry | `main.py` | Router registration, CORS, admin seeding |
+
+Controllers do not contain business logic. They validate requests, check authorization, delegate to Model services, and return responses.
+
+### View — User Interface & Presentation
+
+Location: `frontend/src/pages/`, `frontend/src/components/`, `frontend/src/context/`
+
+| Component | Files | Responsibility |
+|---|---|---|
+| Pages | `pages/*.jsx` | Dashboard, Audit, Optimization, Simulator, Upload, Reports, Login, Signup |
+| Layout | `components/Header.jsx`, `Sidebar.jsx` | App shell with navigation |
+| State Management | `context/AuthContext.jsx`, `AppContext.jsx` | Auth state and shared app state |
+| API Client | `api.js` | Axios instance connecting View to Controller |
+
+### MVC Request Flow
+
+```text
+User Action (Browser)
+    │
+    ▼
+ VIEW — React Page sends request via Axios (api.js)
+    │
+    ▼  REST API call (POST/GET with JWT)
+ CONTROLLER — FastAPI endpoint validates auth & parses input
+    │
+    ▼  Delegates to service
+ MODEL — Service runs business logic (metrics/ML/audit/simulation)
+    │
+    ▼  Reads/writes database via SQLAlchemy ORM
+ CONTROLLER — Returns JSON response
+    │
+    ▼
+ VIEW — React Page renders charts, cards, tables
+```
