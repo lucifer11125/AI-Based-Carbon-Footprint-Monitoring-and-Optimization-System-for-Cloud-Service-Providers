@@ -89,3 +89,45 @@ def seed_admin():
 @app.get("/health")
 def health_check():
     return {"status": "ok", "version": "4.0.1", "performance_patch": True}
+
+
+# ─── All-in-One Static & SPA Frontend Serving ──────────────────────────────
+import os
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
+# Check potential locations for built frontend dist
+_possible_dist_dirs = [
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "dist")),
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "static")),
+]
+FRONTEND_DIST = next((d for d in _possible_dist_dirs if os.path.exists(d)), None)
+
+if FRONTEND_DIST:
+    # Mount assets folder if present
+    assets_dir = os.path.join(FRONTEND_DIST, "assets")
+    if os.path.exists(assets_dir):
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="frontend_assets")
+
+    @app.get("/{full_path:path}")
+    async def serve_spa_frontend(full_path: str):
+        # Exclude API endpoints and OpenAPI doc routes
+        if (
+            full_path.startswith("api/")
+            or full_path.startswith("docs")
+            or full_path.startswith("redoc")
+            or full_path == "openapi.json"
+            or full_path == "health"
+        ):
+            return None
+
+        file_path = os.path.join(FRONTEND_DIST, full_path)
+        if os.path.isfile(file_path):
+            return FileResponse(file_path)
+
+        # Fallback to index.html for React Router SPA routes
+        index_file = os.path.join(FRONTEND_DIST, "index.html")
+        if os.path.isfile(index_file):
+            return FileResponse(index_file)
+        return {"error": "Frontend build index.html not found"}
+

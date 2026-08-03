@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_BASE = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api').replace(/\/+$/, '');
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.DEV ? 'http://localhost:8000/api' : '/api')
+).replace(/\/+$/, '');
 const PUBLIC_AUTH_PATHS = ['/auth/login', '/auth/register'];
 
 const api = axios.create({
