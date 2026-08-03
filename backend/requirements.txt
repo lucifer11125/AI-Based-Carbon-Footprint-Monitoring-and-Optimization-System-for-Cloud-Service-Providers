@@ -3,6 +3,7 @@ uvicorn[standard]
 pandas
 scikit-learn
 sqlalchemy
+psycopg2-binary
 python-multipart
 pydantic
 python-jose[cryptography]

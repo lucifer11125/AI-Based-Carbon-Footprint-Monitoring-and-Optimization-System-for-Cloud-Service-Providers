@@ -147,7 +147,7 @@ async def upload_dataset(
         })
 
         # Convert to dictionaries for fast bulk insert. This avoids constructing
-        # thousands of ORM objects before SQLite receives the rows.
+        # thousands of ORM objects before the database receives the rows.
         for row in df.to_dict('records'):
             # Fallback fields depending on what was identified in the df
             service_val = str(row.get("service") or row.get("service_type") or "General")

@@ -8,6 +8,13 @@ __pycache__/
 # Environment
 .env
 .env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Build outputs
 dist/
@@ -25,11 +32,17 @@ Thumbs.db
 *.egg-info/
 .ruff_cache/
 
-# Database
+# Database & Backups
 *.db
+*.db-shm
+*.db-wal
+backend/backups/
+backups/
 
-# Large CSV files
+# Data CSVs & Dumps
 large_cloud_dataset_100k.csv
+final_dataset_clean*.csv
+dataset shorted*.csv
 
 # Old/deprecated code
 backend-old/
@@ -37,3 +50,4 @@ analytics-backend/
 
 # Misc
 *.docx
+
