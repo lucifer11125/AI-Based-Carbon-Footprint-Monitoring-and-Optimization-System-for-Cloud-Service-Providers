@@ -96,12 +96,15 @@ import os
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
+# On Vercel, static files & SPA routing are handled by the CDN — skip this block.
+_on_vercel = bool(os.environ.get("VERCEL"))
+
 # Check potential locations for built frontend dist
 _possible_dist_dirs = [
     os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "dist")),
     os.path.abspath(os.path.join(os.path.dirname(__file__), "static")),
 ]
-FRONTEND_DIST = next((d for d in _possible_dist_dirs if os.path.exists(d)), None)
+FRONTEND_DIST = None if _on_vercel else next((d for d in _possible_dist_dirs if os.path.exists(d)), None)
 
 if FRONTEND_DIST:
     # Mount assets folder if present
