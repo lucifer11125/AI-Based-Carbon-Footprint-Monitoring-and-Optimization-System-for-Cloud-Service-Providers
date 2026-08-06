@@ -87,6 +87,7 @@ def seed_admin():
 
 
 @app.get("/health")
+@app.get("/api/health")
 def health_check():
     return {"status": "ok", "version": "4.0.1", "performance_patch": True}
 
