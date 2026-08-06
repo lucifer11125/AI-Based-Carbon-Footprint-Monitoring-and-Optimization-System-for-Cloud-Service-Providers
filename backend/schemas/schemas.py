@@ -106,6 +106,17 @@ class MetricResponse(BaseModel):
         from_attributes = True
 
 
+# ─── Prediction ───
+class PredictionResponse(BaseModel):
+    month_name: str
+    predicted_carbon: float
+    trend_direction: str
+    confidence_score: float
+
+    class Config:
+        from_attributes = True
+
+
 class DashboardSummary(BaseModel):
     total_carbon: float
     total_energy: float
@@ -118,17 +129,6 @@ class DashboardSummary(BaseModel):
     predictions: List[PredictionResponse]
     region_breakdown: list
     service_breakdown: list
-
-
-# ─── Prediction ───
-class PredictionResponse(BaseModel):
-    month_name: str
-    predicted_carbon: float
-    trend_direction: str
-    confidence_score: float
-
-    class Config:
-        from_attributes = True
 
 
 # ─── Recommendation ───
