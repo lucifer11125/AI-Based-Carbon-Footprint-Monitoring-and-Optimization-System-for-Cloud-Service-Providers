@@ -43,10 +43,10 @@ logger.addHandler(ch)
 
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
+    logger.info(f"INCOMING REQUEST: {request.method} {request.url.path} (scope_path={request.scope.get('path')})")
     start_time = time.time()
     response = await call_next(request)
     process_time = time.time() - start_time
-    # Log any request that takes longer than 1 second
     if process_time > 1.0:
         logger.warning(f"SLOW REQUEST: {request.method} {request.url.path} took {process_time:.4f}s")
     return response
@@ -87,10 +87,19 @@ def seed_admin():
         db.close()
 
 
+@app.get("/")
+@app.get("/api")
+@app.get("/api/index.py")
+@app.get("/api/index")
 @app.get("/health")
 @app.get("/api/health")
-def health_check():
-    return {"status": "ok", "version": "4.0.1", "performance_patch": True}
+def health_check(request: Request):
+    return {
+        "status": "ok",
+        "version": "4.0.1",
+        "path": request.url.path,
+        "scope_path": request.scope.get("path"),
+    }
 
 
 # ─── All-in-One Static & SPA Frontend Serving (Localhost Only) ──────────────
