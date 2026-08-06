@@ -1,0 +1,43 @@
+# Python virtual environment
+backend/venv/
+venv/
+
+# SQLite databases & backups (we use Supabase PostgreSQL in production)
+*.db
+*.db-shm
+*.db-wal
+backend/backups/
+backend/carbonlens_backup_*.db
+
+# Large CSV data files
+final_dataset_clean*.csv
+large_cloud_dataset_100k.csv
+aws_cloud_carbon_dataset.csv
+"dataset shorted.csv"
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.ruff_cache/
+
+# Node modules (Vercel installs these during build)
+frontend/node_modules/
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docs
+*.docx
+
+# Old/deprecated code
+backend-old/
+analytics-backend/
