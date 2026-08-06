@@ -51,14 +51,15 @@ async def log_requests(request: Request, call_next):
         logger.warning(f"SLOW REQUEST: {request.method} {request.url.path} took {process_time:.4f}s")
     return response
 
-# Import and register routers
+# Import and register routers (both with /api prefix and direct prefix for resilience)
 from api.endpoints import auth, companies, datasets, admin, reports
 
-app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
-app.include_router(companies.router, prefix="/api/companies", tags=["companies"])
-app.include_router(datasets.router, prefix="/api/datasets", tags=["datasets"])
-app.include_router(admin.router, prefix="/api/admin", tags=["admin"])
-app.include_router(reports.router, prefix="/api/reports", tags=["reports"])
+for prefix in ["/api", ""]:
+    app.include_router(auth.router, prefix=f"{prefix}/auth", tags=["auth"])
+    app.include_router(companies.router, prefix=f"{prefix}/companies", tags=["companies"])
+    app.include_router(datasets.router, prefix=f"{prefix}/datasets", tags=["datasets"])
+    app.include_router(admin.router, prefix=f"{prefix}/admin", tags=["admin"])
+    app.include_router(reports.router, prefix=f"{prefix}/reports", tags=["reports"])
 
 
 @app.on_event("startup")
@@ -92,47 +93,43 @@ def health_check():
     return {"status": "ok", "version": "4.0.1", "performance_patch": True}
 
 
-# ─── All-in-One Static & SPA Frontend Serving ──────────────────────────────
+# ─── All-in-One Static & SPA Frontend Serving (Localhost Only) ──────────────
 import os
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
-# On Vercel, self-referencing rewrites preserve the original path to FastAPI,
-# so FRONTEND_DIST works correctly for serving the SPA and static assets.
+# On Vercel, static files & SPA routing are handled by Vercel CDN and vercel.json
 _on_vercel = bool(os.environ.get("VERCEL"))
 
-# Check potential locations for built frontend dist
-_possible_dist_dirs = [
-    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "dist")),
-    os.path.abspath(os.path.join(os.path.dirname(__file__), "static")),
-]
-FRONTEND_DIST = next((d for d in _possible_dist_dirs if os.path.exists(d)), None)
+if not _on_vercel:
+    _possible_dist_dirs = [
+        os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "dist")),
+        os.path.abspath(os.path.join(os.path.dirname(__file__), "static")),
+    ]
+    FRONTEND_DIST = next((d for d in _possible_dist_dirs if os.path.exists(d)), None)
 
-if FRONTEND_DIST:
-    # Mount assets folder if present
-    assets_dir = os.path.join(FRONTEND_DIST, "assets")
-    if os.path.exists(assets_dir):
-        app.mount("/assets", StaticFiles(directory=assets_dir), name="frontend_assets")
+    if FRONTEND_DIST:
+        assets_dir = os.path.join(FRONTEND_DIST, "assets")
+        if os.path.exists(assets_dir):
+            app.mount("/assets", StaticFiles(directory=assets_dir), name="frontend_assets")
 
-    @app.get("/{full_path:path}")
-    async def serve_spa_frontend(full_path: str):
-        # Exclude API endpoints and OpenAPI doc routes
-        if (
-            full_path.startswith("api/")
-            or full_path.startswith("docs")
-            or full_path.startswith("redoc")
-            or full_path == "openapi.json"
-            or full_path == "health"
-        ):
-            return None
+        @app.get("/{full_path:path}")
+        async def serve_spa_frontend(full_path: str):
+            if (
+                full_path.startswith("api/")
+                or full_path.startswith("docs")
+                or full_path.startswith("redoc")
+                or full_path == "openapi.json"
+                or full_path == "health"
+            ):
+                return None
 
-        file_path = os.path.join(FRONTEND_DIST, full_path)
-        if os.path.isfile(file_path):
-            return FileResponse(file_path)
+            file_path = os.path.join(FRONTEND_DIST, full_path)
+            if os.path.isfile(file_path):
+                return FileResponse(file_path)
 
-        # Fallback to index.html for React Router SPA routes
-        index_file = os.path.join(FRONTEND_DIST, "index.html")
-        if os.path.isfile(index_file):
-            return FileResponse(index_file)
-        return {"error": "Frontend build index.html not found"}
+            index_file = os.path.join(FRONTEND_DIST, "index.html")
+            if os.path.isfile(index_file):
+                return FileResponse(index_file)
+            return {"error": "Frontend build index.html not found"}
 

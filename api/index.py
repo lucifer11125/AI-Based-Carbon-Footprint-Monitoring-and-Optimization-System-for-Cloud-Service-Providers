@@ -7,22 +7,19 @@ backend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "bac
 if backend_dir not in sys.path:
     sys.path.insert(0, backend_dir)
 
-# Load .env from backend directory (no-op on Vercel where env vars come from dashboard)
+# Load .env from backend directory
 from dotenv import load_dotenv
 load_dotenv(os.path.join(backend_dir, ".env"))
 
-from main import app as _fastapi_app  # noqa: E402
+from main import app as fastapi_app  # noqa: E402
 
 
-class VercelPathFixer:
+class VercelPathMiddleware:
     """
-    Vercel's 'internal rewrites' behavior sends the rewritten DESTINATION path
-    to the FastAPI ASGI scope (e.g. /api/index.py) instead of the original
-    request path (e.g. /api/auth/login).
-
-    We work around this by embedding the original path as a '__vpath' query
-    parameter in the rewrite destination. This middleware reads it and restores
-    the correct path in the ASGI scope before FastAPI's router runs.
+    On Vercel, serverless function rewrites might deliver the internal destination
+    path (e.g. /api/index.py) instead of the original user-requested path.
+    This middleware extracts the original requested path from standard Vercel
+    headers or query parameters and restores it into the ASGI scope.
     """
 
     def __init__(self, app):
@@ -30,23 +27,28 @@ class VercelPathFixer:
 
     async def __call__(self, scope, receive, send):
         if scope["type"] == "http":
-            raw_qs = scope.get("query_string", b"").decode("utf-8")
-            params = urllib.parse.parse_qs(raw_qs, keep_blank_values=True)
+            headers = dict(scope.get("headers", []))
 
-            if "__vpath" in params:
-                # Restore original path (Vercel merges rewrite-dest QS with request QS)
-                original_path = "/" + urllib.parse.unquote(params["__vpath"][0])
+            # Check headers injected by Vercel Edge / CDN
+            matched_path = (
+                headers.get(b"x-matched-path")
+                or headers.get(b"x-forwarded-uri")
+                or headers.get(b"x-original-url")
+                or headers.get(b"x-vercel-matched-path")
+            )
+
+            target_path = None
+            if matched_path:
+                target_path = matched_path.decode("utf-8", errors="ignore").split("?")[0]
+
+            # If no header matched or if path is the function file name
+            raw_path = scope.get("path", "")
+            if (raw_path in ("/api/index.py", "/api/index", "/api/index.py/", "") or not raw_path) and target_path:
                 scope = dict(scope)
-                scope["path"] = original_path
-
-                # Strip __vpath from query string before forwarding to FastAPI
-                cleaned = {k: v for k, v in params.items() if k != "__vpath"}
-                scope["query_string"] = urllib.parse.urlencode(
-                    cleaned, doseq=True
-                ).encode()
+                scope["path"] = target_path
+                scope["raw_path"] = target_path.encode("utf-8")
 
         await self.app(scope, receive, send)
 
 
-# Vercel looks for `app` at module level — wrap FastAPI with the path fixer
-app = VercelPathFixer(_fastapi_app)
+app = VercelPathMiddleware(fastapi_app)
