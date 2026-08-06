@@ -1,5 +1,6 @@
 import sys
 import os
+import urllib.parse
 
 backend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "backend"))
 if backend_dir not in sys.path:
@@ -13,7 +14,9 @@ from main import app as fastapi_app  # noqa: E402
 
 class VercelPathMiddleware:
     """
-    Ensures that rewritten requests on Vercel reach the intended FastAPI routes.
+    On Vercel, internal rewrites route requests to /api/index.py.
+    This middleware restores the original subpath from the __path query param
+    so that FastAPI router can match all routes (/api/auth/login, /api/admin/overview, etc.).
     """
 
     def __init__(self, app):
@@ -21,22 +24,26 @@ class VercelPathMiddleware:
 
     async def __call__(self, scope, receive, send):
         if scope["type"] == "http":
-            raw_path = scope.get("path", "")
-            headers = dict(scope.get("headers", []))
+            query_string = scope.get("query_string", b"").decode("utf-8")
+            params = urllib.parse.parse_qs(query_string, keep_blank_values=True)
 
-            # Log path and Vercel routing headers
-            matched = (
-                headers.get(b"x-matched-path", b"").decode("utf-8", "ignore")
-                or headers.get(b"x-forwarded-uri", b"").decode("utf-8", "ignore")
-                or headers.get(b"x-real-path", b"").decode("utf-8", "ignore")
-            )
+            if "__path" in params and params["__path"]:
+                target_subpath = params["__path"][0]
+                if not target_subpath.startswith("/"):
+                    target_subpath = "/" + target_subpath
+                if not target_subpath.startswith("/api"):
+                    target_path = "/api" + target_subpath
+                else:
+                    target_path = target_subpath
 
-            # If the path arrived as the handler script itself (/api/index.py or /api/index)
-            if raw_path in ("/api/index.py", "/api/index", "/api/index.py/", "") and matched:
-                target = matched.split("?")[0]
+                # Remove __path from query string
+                cleaned_params = {k: v for k, v in params.items() if k != "__path"}
+                cleaned_qs = urllib.parse.urlencode(cleaned_params, doseq=True)
+
                 scope = dict(scope)
-                scope["path"] = target
-                scope["raw_path"] = target.encode("utf-8")
+                scope["path"] = target_path
+                scope["raw_path"] = target_path.encode("utf-8")
+                scope["query_string"] = cleaned_qs.encode("utf-8")
 
         await self.app(scope, receive, send)
 
